@@ -11,6 +11,7 @@ Crear el archivo .env
 dentro de ella escribir las variables de entorno:
 
 Conexion Base de Datos: 
+Crear una base de datos llamada -> eaglesolutions
 ```
 DB_USER=postgres
 DB_PASSWORD= ****** 
