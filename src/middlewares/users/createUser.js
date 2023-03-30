@@ -11,12 +11,13 @@ const createUser = async (req, res, next) => {
                 clave
             })
             next();
+        }else{
+            throw new Error("los algun datos pasados por body son incorrectos")
         }
-        throw new Error("los algun datos pasados por body son incorrectos")
     }catch(err){
         console.log("error en createUser")
         console.log(err.message)
-        res.status(412) 
+        res.status(412).send("El usuario no se ah creado, error en los campos")
     }
 }
 
