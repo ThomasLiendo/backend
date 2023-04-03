@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
-      allowNull: false,
+      autoIncrement: true,
     },
     nombre: { 
       type: DataTypes.STRING,
@@ -18,9 +18,13 @@ module.exports = (sequelize) => {
     },
     cantidad: { 
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     observaciones: { //cambiarlo a un array de observaciones
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    informacion: {
       type: DataTypes.STRING,
       allowNull: true,
     },
