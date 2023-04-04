@@ -8,12 +8,12 @@ const updateDeposito = async (req, res, next) => {
     if (deposito.lenght !== 0) {
       await Deposito.update(
         {
-          nombre,
-          calle,
-          altura,
-          ciudad,
-          provincia,
-          pais,
+          nombre: nombre || deposito.nombre,
+          calle: calle || deposito.calle,
+          altura: altura || deposito.altura,
+          ciudad: ciudad || deposito.ciudad,
+          provincia: provincia || deposito.provincia,
+          pais: pais || deposito.pais,
         },
         { where: { id: id } }
       );

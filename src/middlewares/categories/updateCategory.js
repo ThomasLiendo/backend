@@ -7,8 +7,8 @@ const updateCategory = async (req, res, next) => {
     if (categoria.lenght !== 0) {
       await Categoria.update(
         {
-          nombre,
-          descripcion,
+          nombre: nombre || categoria.nombre,
+          descripcion: descripcion || categoria.descripcion,
         },
         { where: { id: id } }
       );
