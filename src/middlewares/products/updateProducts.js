@@ -8,11 +8,11 @@ const updateProduct = async (req, res, next) => {
     if (producto.lenght !== 0) {
       await Producto.update(
         {
-          nombre,
-          cantidad,
-          observaciones,
-          informacion,
-          codigo
+          nombre:nombre || producto.nombre,
+          cantidad: cantidad || producto.cantidad,
+          observaciones:observaciones || producto.observaciones,
+          informacion:informacion || producto.informacion,
+          codigo: codigo || producto.codigo,
         },
         { where: { id: id } }
       );
