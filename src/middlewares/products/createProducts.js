@@ -2,7 +2,7 @@ const { Producto, Op } = require("../../db");
 
 const createProduct = async (req, res, next) => {
   try {
-    const { nombre, descripcion } = req.body;
+    const { nombre, descripcion, codigo } = req.body;
     console.log(nombre);
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
@@ -14,6 +14,7 @@ const createProduct = async (req, res, next) => {
     const newProduct = await Producto.create({
       nombre,
       descripcion,
+      codigo,
     });
     req.body.resultado = {
       status: "200",
