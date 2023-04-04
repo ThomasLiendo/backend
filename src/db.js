@@ -47,6 +47,8 @@ Categoria.hasMany(Subcategoria);
 Subcategoria.hasMany(Producto);
 
 Empresa.hasMany(Usuario);
+Empresa.hasMany(Deposito);
+Empresa.hasMany(Producto);
 
 Deposito.belongsToMany(Producto, { through: "Deposito_Producto" });
 Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
