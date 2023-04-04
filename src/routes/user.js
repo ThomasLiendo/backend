@@ -11,15 +11,14 @@ router.get('/', allUsers, async(req,res)=>{
 })
 
 router.post('/', createUser, async(req,res)=>{
-    const {nombre, apellido, email} = req.body;
     return res.status(200).send(req.body.resultado) 
 })
 
-router.put('/', updateUsers, async(req,res)=>{   
-    return res.json({respuesta: `usuario actualizado`}) 
+router.put('/:id', updateUsers, async(req,res)=>{   
+    return res.json(req.body.resultado) 
 })
 
-router.delete('/', deleteUser, async(req,res)=>{   
+router.delete('/:id', deleteUser, async(req,res)=>{   
     return res.json({respuesta:`usuario con id ${req.body.eliminado} eliminado`}) 
 })
 
