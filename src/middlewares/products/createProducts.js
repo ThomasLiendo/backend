@@ -22,23 +22,6 @@ const createProduct = async (req, res, next) => {
         console.log(req.body.resultado)
         next();
     }
-    const newProduct = await Producto.create({
-      nombre,
-      descripcion,
-      codigo,
-    });
-    req.body.resultado = {
-      status: "200",
-      respuesta: `el Producto ${nombre} se ah creado exitosamente`,
-    };
-    next();
-  } catch (err) {
-    console.log("error en createProduct");
-    console.log(err.message);
-    req.body.resultado = { status: "404", respuesta: err.message };
-    console.log(req.body.resultado);
-    next();
-  }
 };
 
 module.exports = createProduct;
