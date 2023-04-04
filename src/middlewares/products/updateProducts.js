@@ -12,7 +12,7 @@ const updateProduct = async (req, res, next) => {
           cantidad,
           observaciones,
           informacion,
-          codigo,
+          codigo
         },
         { where: { id: id } }
       );
