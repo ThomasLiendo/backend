@@ -8,7 +8,7 @@ const updateRol = async (req, res, next) => {
         const idRol = await Rol.findAll({where:{id}});
         if(idRol.lenght !== 0){
             await Rol.update({
-                rol
+                rol:rol || idRol.rol,
             },{where: {id:id}})
             req.body.resultado = {status:"200", respuesta:`El Rol ${rol} se ah actualizado exitosamente`};
             next();
