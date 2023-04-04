@@ -1,4 +1,5 @@
 // const { Product, Op } = require("../db");
+// const { Product, Op } = require("../db");
 
 // const functionDeEjemplo = async (req, res, next) => {
 //     try{
@@ -9,3 +10,5 @@
 //         console.log("error en functionDeEjemplo")
 //     }
 // }
+
+// module.exports = functionDeEjemplo;
