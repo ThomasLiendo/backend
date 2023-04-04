@@ -1,4 +1,5 @@
 // const { Product, Op } = require("../db");
+// const { Product, Op } = require("../db");
 
 // const functionDeEjemplo = async (req, res, next) => {
 //     try{
