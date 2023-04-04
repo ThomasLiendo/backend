@@ -4,6 +4,7 @@ const deleteUser = async (req, res, next) => {
     try{
         const id = req.body.id
         const usuario = await Usuario.findOne({where:{id}})
+
         if(!usuario){
             throw new Error(`No existe el producto con el ID: ${id}`)
         }

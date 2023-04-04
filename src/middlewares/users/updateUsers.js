@@ -23,6 +23,7 @@ const updateUser = async (req, res, next) => {
         console.log(err)
         req.body.resultado = {status:404, resultado:err.message}
         next();
+
     }
 }
 

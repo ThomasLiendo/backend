@@ -9,5 +9,3 @@
 //         console.log("error en functionDeEjemplo")
 //     }
 // }
-
-// module.exports = functionDeEjemplo;
