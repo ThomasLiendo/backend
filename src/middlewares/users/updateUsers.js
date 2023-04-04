@@ -12,16 +12,18 @@ const updateUser = async (req, res, next) => {
                 email,
                 clave,
             },{where: {id:id}})
-            req.body.resultado = {status:"200", respuesta:`el Usuario ${nombre} ${apellido} con email: ${email} se ah creado exitosamente`};
+            req.body.resultado = {status:"200", respuesta:`el Usuario ${usuario.nombre} ${usuario.apellido} con email: ${usuario.email} se ah actualizado exitosamente por nombre: ${nombre}, apellido: ${apellido}, email: ${email}`};
             next();
         }else{
-            throw new Error(`Usuario con el ${id} no se ah encontrado`)
+            throw new Error(`Rol con el ID: ${id} no se ah encontrado`)
         }
 
     }catch(err){
-        console.log("error en updateUser")
+        console.log("error en updateRol")
         console.log(err)
-        res.status(412).json({resultado:err})
+        req.body.resultado = {status:404, resultado:err.message}
+        next();
+
     }
 }
 
