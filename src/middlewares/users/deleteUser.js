@@ -2,14 +2,15 @@ const { Usuario, Op } = require("../../db");
 
 const deleteUser = async (req, res, next) => {
     try{
-        const id = req.body.id
+        const id = req.params.id
         const usuario = await Usuario.findOne({where:{id}})
+
         if(!usuario){
             throw new Error(`No existe el producto con el ID: ${id}`)
         }
         if(usuario.id > 0){
             await Usuario.destroy({where:{id:usuario.id}});
-            req.body.eliminado =  usuario.id;
+            req.body.eliminado =  {status:200,resultado:`el Rol ${usuario.nombre} ah sido eliminado`};
             next();
         }else{
             throw new Error(`no existe el usuario con esa ID: ${id}`)
@@ -17,7 +18,7 @@ const deleteUser = async (req, res, next) => {
     }catch(err){
         console.log("error en deleteUser");
         console.log(err)
-        res.status(404).send(`usuario no encontrado`);
+        req.body.eliminado =  {status:404,resultado:err.message};
     }
 }
 

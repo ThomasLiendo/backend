@@ -7,7 +7,7 @@ const updateCategory = require("../middlewares/categories/updateCategory");
 const router = Router();
 
 router.get("/", allCategory, async (req, res) => {
-  return res.json(req.body.allCategory);
+  return res.json(req.body.allCategories);
 });
 
 router.post("/", createCategory, async (req, res) => {

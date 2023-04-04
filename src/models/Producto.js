@@ -20,13 +20,18 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    observaciones: {
-      //cambiarlo a un array de observaciones
+    codigo: {
       type: DataTypes.STRING,
       allowNull: true,
+      unique: true,
     },
-    informacion: {
-      type: DataTypes.STRING,
+    observaciones: {
+      //cambiarlo a un array de observaciones
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    descripcion: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     imagen: {
