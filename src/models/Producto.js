@@ -22,11 +22,11 @@ module.exports = (sequelize) => {
     },
     observaciones: {
       //cambiarlo a un array de observaciones
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     descripcion: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     imagen: {
