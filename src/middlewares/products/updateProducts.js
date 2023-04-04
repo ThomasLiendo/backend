@@ -2,7 +2,7 @@ const { Producto, Op } = require("../../db");
 
 const updateProduct = async (req, res, next) => {
   try {
-    const { nombre, cantidad, observaciones, informacion } = req.body;
+    const { nombre, cantidad, observaciones, informacion, codigo } = req.body;
     const id = req.params.id;
     const producto = await Producto.findAll({ where: { id } });
     if (producto.lenght !== 0) {
@@ -12,6 +12,7 @@ const updateProduct = async (req, res, next) => {
           cantidad,
           observaciones,
           informacion,
+          codigo,
         },
         { where: { id: id } }
       );
