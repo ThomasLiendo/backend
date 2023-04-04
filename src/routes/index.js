@@ -7,6 +7,7 @@ const Categories = require("./categories");
 const Home = require("./home");
 const User = require("./user");
 const Product = require("./producto");
+const Rol = require("./rol")
 
 const router = express();
 
@@ -15,6 +16,7 @@ router.use(express.json());
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.use("/rols", Rol);
 router.use("/categorias", Categories);
 router.use("/productos", Product);
 router.use("/usuarios", User);
