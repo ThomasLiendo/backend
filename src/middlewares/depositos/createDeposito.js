@@ -33,7 +33,7 @@ const createDeposito = async (req, res, next) => {
       typeof provincia === "string" &&
       typeof pais === "string"
     ) {
-      const newDeposito = await Usuario.create({
+      const newDeposito = await Deposito.create({
         nombre,
         calle,
         altura,
