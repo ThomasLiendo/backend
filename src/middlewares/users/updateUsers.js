@@ -8,10 +8,10 @@ const updateUser = async (req, res, next) => {
     if (usuario.lenght !== 0) {
       await Usuario.update(
         {
-          nombre,
-          apellido,
-          email,
-          clave,
+          nombre: nombre || usuario.nombre,
+          apellido: apellido || usuario.apellido,
+          email: email || usuario.email,
+          clave: clave || usuario.clave,
         },
         { where: { id: id } }
       );
