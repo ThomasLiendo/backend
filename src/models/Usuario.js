@@ -1,11 +1,11 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Usuario', {
+  sequelize.define("Usuario", {
     //id se crea automatico
-    id:{
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
@@ -15,41 +15,40 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate:{
+      validate: {
         isAlpha: {
-          msg: "El Nombre debe ser solo Texto"
-        }
-      }
+          msg: "El Nombre debe ser solo Texto",
+        },
+      },
     },
     apellido: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      validate: {
         isAlpha: {
-          msg: "El Apellido debe ser solo Texto"
-        }
-      }
-      
+          msg: "El Apellido debe ser solo Texto",
+        },
+      },
     },
     email: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate:{
+      validate: {
         isEmail: {
-          msg: "El Formato del Email no es el correcto"
-        }
-      }
+          msg: "El Formato del Email no es el correcto",
+        },
+      },
     },
-    clave: { 
+    clave: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
-        len: [5,20], 
+      validate: {
+        len: [5, 20],
         isInt: {
-          msg: "La Clave debe ser entre 5 a 20 caracteres"
-        }
-      }
+          msg: "La Clave debe ser entre 5 a 20 caracteres",
+        },
+      },
     },
-  },);
+  });
 };

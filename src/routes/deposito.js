@@ -4,13 +4,16 @@ const allDepositos = require("../middlewares/depositos/allDepositos");
 const updateDeposito = require("../middlewares/depositos/updateDeposito");
 const createDeposito = require("../middlewares/depositos/createDeposito");
 const deleteDeposito = require("../middlewares/depositos/deleteDeposito");
+const findDepositoByID = require("../middlewares/depositos/findDepositoByID");
 
 const router = Router();
 
 router.get("/", allDepositos, async (req, res) => {
   return res.json(req.body.allDepositos);
 });
-
+router.get("/:id", findDepositoByID, async (req, res) => {
+  return res.json(req.body.findDepositoByID);
+});
 router.post("/", createDeposito, async (req, res) => {
   return res.status(200).send(req.body.resultado);
 });

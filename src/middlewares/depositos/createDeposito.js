@@ -5,7 +5,7 @@ const createDeposito = async (req, res, next) => {
     const { nombre, calle, altura, ciudad, provincia, pais } = req.body;
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
-        `El Nombre del debe ser unicamente texto, y has insertado ${
+        `El Nombre del deposito debe ser unicamente texto, y has insertado ${
           nombre === undefined ? "texto vacio" : nombre
         }`
       );
