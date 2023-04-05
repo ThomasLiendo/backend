@@ -8,7 +8,9 @@ const User = require("./user");
 const Product = require("./producto");
 const Categories = require("./categories");
 const Deposito = require("./deposito");
-const Rols = require('./rol');
+const Rols = require("./rol");
+const Empresas = require("./empresas");
+
 const router = express();
 
 router.use(express.json());
@@ -16,6 +18,7 @@ router.use(express.json());
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.use("/empresas", Empresas);
 router.use("/rols", Rols);
 router.use("/categorias", Categories);
 router.use("/productos", Product);

@@ -2,7 +2,7 @@ const { Categoria } = require("../../db");
 
 const deleteCategory = async (req, res, next) => {
   try {
-    const id = req.body.id;
+    const id = req.params.id;
     const categoria = await Categoria.findOne({ where: { id } });
     if (categoria.id > 0) {
       await Categoria.destroy({ where: { id: categoria.id } });
