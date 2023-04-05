@@ -44,11 +44,19 @@ const { Categoria, Subcategoria, Producto, Rol, Usuario, Deposito, Empresa } =
 // Aca vendrian las relaciones
 
 Categoria.hasMany(Subcategoria);
+Subcategoria.belongsTo(Categoria);
+
 Subcategoria.hasMany(Producto);
+Producto.belongsTo(Subcategoria);
 
 Empresa.hasMany(Usuario);
+Usuario.belongsTo(Empresa);
+
 Empresa.hasMany(Deposito);
+Deposito.belongsTo(Empresa);
+
 Empresa.hasMany(Producto);
+Producto.belongsTo(Empresa)
 
 Deposito.belongsToMany(Producto, { through: "Deposito_Producto" });
 Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
