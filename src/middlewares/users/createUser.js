@@ -1,9 +1,13 @@
-const { Usuario, Op } = require("../../db");
+const { Usuario, Rol, Op } = require("../../db");
 
 const createUser = async (req, res, next) => {
   try {
     const { nombre, apellido, email, clave } = req.body;
-    console.log(nombre);
+    const { rol } = req.body;
+    const elRol = await Rol.findAll({
+      where: { rol: rol },
+    });
+
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
         `El Nombre del Usuario debe ser unicamente texto, y has insertado ${
@@ -29,24 +33,23 @@ const createUser = async (req, res, next) => {
         apellido,
         email,
         clave,
+        rol,
       });
+      await newUser.addRol(elRol);
+      // res.status(200).json(elRol);
       req.body.resultado = {
         status: "200",
-        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} se ah creado exitosamente!`,
+        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${rol} se ah creado exitosamente!`,
       };
       next();
     } else {
       throw new Error("datos pasados por body son incorrectos");
     }
   } catch (err) {
-    console.log("error en createUser");
-    console.log(err.message);
     req.body.resultado = { status: "404", respuesta: err.message };
-    console.log(req.body.resultado);
+
     next();
   }
 };
 
 module.exports = createUser;
-
-

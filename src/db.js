@@ -59,6 +59,9 @@ Usuario.belongsToMany(Rol, { through: "Usuario_Rol" });
 Usuario.belongsToMany(Deposito, { through: "Usuario_Deposito" });
 Deposito.belongsToMany(Usuario, { through: "Usuario_Deposito" });
 
+Categoria.belongsToMany(Producto, { through: "Categoria_Producto" });
+Producto.belongsToMany(Categoria, { through: "Categoria_Producto" });
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importar la conexión { conn } = require('./db.js');
