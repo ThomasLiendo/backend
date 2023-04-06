@@ -24,6 +24,7 @@ router.use("/categorias", Categories);
 router.use("/productos", Product);
 router.use("/usuarios", User);
 router.use("/depositos", Deposito);
+router.use("/roles", Rol);
 router.use("/", Home);
 
 router.all("*", (req, res) => {
