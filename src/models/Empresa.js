@@ -34,8 +34,8 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [5, 20],
-        isInt: {
+        len: {
+          args: [5, 20],
           msg: "La Clave debe ser entre 5 a 20 caracteres",
         },
       },
