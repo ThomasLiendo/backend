@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const hash = require('../functions/hash');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -39,6 +40,9 @@ module.exports = (sequelize) => {
           msg: "La Clave debe ser entre 5 a 20 caracteres",
         },
       },
+      set(value){
+        this.setDataValue('clave', hash(value));
+      }
     },
   });
 };

@@ -1,12 +1,17 @@
-const { Usuario, Rol, Op } = require("../../db");
+const { Usuario, Rol, Empresa, Op } = require("../../db");
 
 const createUser = async (req, res, next) => {
   try {
-    const { nombre, apellido, email, clave } = req.body;
-    const { rol } = req.body;
+    const { nombre, apellido, email } = req.body;
+    let { rolID, empresaID } = req.body;
+    //control de Primera letra en Mayusculas y las demas en Minuscula
+    nombre = nombre[0].toUpperCase() + nombre.slice(1).toLowerCase();
+    apellido = apellido[0].toUpperCase() + apellido.slice(1).toLowerCase();
+    email = email.toLowerCase();
     const elRol = await Rol.findAll({
-      where: { rol: rol },
+      where: { id: rolID },
     });
+    const laEmpresa = await Empresa.findByPk(empresaID);
 
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
@@ -25,21 +30,25 @@ const createUser = async (req, res, next) => {
     if (
       typeof nombre === "string" &&
       typeof apellido === "string" &&
-      typeof email === "string" &&
-      typeof clave === "string"
+      typeof email === "string"
     ) {
-      const newUser = await Usuario.create({
-        nombre,
-        apellido,
-        email,
-        clave,
-        rol,
+      let newUser = await Usuario.findOne({
+        where: { email },
       });
-      await newUser.addRol(elRol);
-      // res.status(200).json(elRol);
+      if (newUser === null) {
+        newUser = await Usuario.create({
+          nombre,
+          apellido,
+          email,
+          clave: nombre + apellido,
+        });
+      }
+      console.log(newUser);
+      await newUser.addRols(elRol);
+      await laEmpresa.addUsuario(newUser);
       req.body.resultado = {
         status: "200",
-        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${rol} se ah creado exitosamente!`,
+        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${elRol.rol} se ah creado exitosamente!, asociado a la Empresa: ${laEmpresa.nombre}`,
       };
       next();
     } else {
@@ -53,3 +62,24 @@ const createUser = async (req, res, next) => {
 };
 
 module.exports = createUser;
+
+// if (
+//   typeof nombre === "string" &&
+//   typeof apellido === "string" &&
+//   typeof email === "string" &&
+//   typeof clave === "string"
+// ) {
+//   const newUser = await Usuario.create({
+//     where: { email },
+//     defaults: {
+//       nombre,
+//       apellido,
+//       email,
+//       clave,
+//     },
+//   });
+//   // console.log("Usuario", newUser)
+//   // console.log("ROL",elRol);
+//   // console.log("EMPRESA",laEmpresa);
+//   await newUser.setRols(elRol);
+//   await newUser.setEmpresa(laEmpresa);
