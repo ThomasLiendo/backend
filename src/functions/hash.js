@@ -6,10 +6,11 @@ const hash = (value) => {
     hashCode *= BigInt(0x1000193);
     hashCode &= BigInt(0xffffffff);
   }
-  while (hash.toString(16).length < 8) {
-    hashCode = "0" + hash.toString(16);
+  while (hashCode.toString(16).length < 8) {
+    hashCode = "0" + hashCode.toString(16);
   }
-  return hash.toString(16);
+  console.log(hashCode.toString(16))
+  return hashCode.toString(16);
 };
 
 module.exports = hash;

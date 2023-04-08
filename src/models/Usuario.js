@@ -45,19 +45,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [5, 20],
-        isInt: {
-          msg: "La Clave debe ser entre 5 a 20 caracteres",
-        },
+        len: {
+          args: [5, 20],
+        msg:"La Clave debe ser entre 5 a 20 caracteres"},
       },
       set(value){
         this.setDataValue('clave', hash(value));
       }
-    },
-    rol: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
     },
   });
 };

@@ -1,15 +1,28 @@
-const { Usuario, Empresa, Op } = require("../../db");
+const { Usuario, Empresa, Rol, Op } = require("../../db");
 
 const allUser = async (req, res, next) => {
   try {
     const allUsers = await Usuario.findAll({
-        include: [Empresa],
-      });
-          req.body.allUsers = {status:200, resultado: allUsers}
+      include: [
+        {
+          model: Empresa,
+          attributes: ["id", "nombre"],
+        },
+        {
+          model: Rol,
+          attributes: ["id", "rol"],
+          through: {
+            attributes: []
+          }
+        },
+      ],
+      attributes:["id","nombre","apellido","clave"]
+    });
+    req.body.allUsers = { status: 200, resultado: allUsers };
     next();
   } catch (err) {
     console.log("error en allUser", err.message);
-    req.body.allUsers = {status:404,resultado: err.message}
+    req.body.allUsers = { status: 404, resultado: err.message };
   }
 };
 

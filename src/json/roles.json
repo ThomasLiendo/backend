@@ -1,0 +1,18 @@
+[
+    {
+        "id":1,
+        "rol":"Administrador"
+    },
+    {
+        "id":2,
+        "rol":"Responsable de Deposito"
+    },
+    {
+        "id":3,
+        "rol":"Responsable de Compras"
+    },
+    {
+        "id":4,
+        "rol":"Responsable de Logistica"
+    }
+]
