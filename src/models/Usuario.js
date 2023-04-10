@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const hash = require('../functions/hash');
+const hash = require("../functions/hash");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -47,11 +47,16 @@ module.exports = (sequelize) => {
       validate: {
         len: {
           args: [5, 20],
-        msg:"La Clave debe ser entre 5 a 20 caracteres"},
+          msg: "La Clave debe ser entre 5 a 20 caracteres",
+        },
       },
-      set(value){
-        this.setDataValue('clave', hash(value));
-      }
+      set(value) {
+        this.setDataValue("clave", hash(value));
+      },
     },
+    //  img: {
+    //   type: DataTypes.TEXT, //puse .text para que cuando se ponga una imagen me permita mas caracteres para poner un link largo
+    //   allowNull: true,
+    // },
   });
 };

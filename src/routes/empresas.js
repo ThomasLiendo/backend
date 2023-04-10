@@ -22,8 +22,9 @@ router.post("/", createEmpresa, async (req, res) => {
 router.put("/:id", updateEmpresa, async (req, res) => {
   return res.json(req.body.resultado);
 });
-module.exports = router;
 
 router.delete("/:id", deleteEmpresa, async (req, res) => {
   return res.json(req.body.eliminado);
 });
+
+module.exports = router;
