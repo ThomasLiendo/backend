@@ -2,7 +2,7 @@ const { Usuario, Rol, Empresa, Op } = require("../../db");
 
 const createUser = async (req, res, next) => {
   try {
-    const { nombre, apellido, email } = req.body;
+    let { nombre, apellido, email } = req.body;
     let { rolID, empresaID } = req.body;
     //control de Primera letra en Mayusculas y las demas en Minuscula
     nombre = nombre[0].toUpperCase() + nombre.slice(1).toLowerCase();
