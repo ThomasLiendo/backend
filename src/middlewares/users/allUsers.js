@@ -16,7 +16,7 @@ const allUser = async (req, res, next) => {
           }
         },
       ],
-      attributes:["id","nombre","apellido","clave"]
+      attributes:["id","nombre","apellido","clave","email"]
     });
     req.body.allUsers = { status: 200, resultado: allUsers };
     next();

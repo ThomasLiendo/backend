@@ -31,18 +31,18 @@ module.exports = (sequelize) => {
         },
       },
     },
-    clave: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: {
-          args: [5, 20],
-          msg: "La Clave debe ser entre 5 a 20 caracteres",
-        },
-      },
-      set(value){
-        this.setDataValue('clave', hash(value));
-      }
-    },
+    // clave: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     len: {
+    //       args: [5, 20],
+    //       msg: "La Clave debe ser entre 5 a 20 caracteres",
+    //     },
+    //   },
+    //   set(value){
+    //     this.setDataValue('clave', hash(value));
+    //   }
+    // },
   });
 };
