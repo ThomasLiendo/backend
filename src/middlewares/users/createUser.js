@@ -43,12 +43,12 @@ const createUser = async (req, res, next) => {
           clave: nombre + apellido,
         });
       }
-      console.log(newUser);
+      console.log(elRol);
       await newUser.addRols(elRol);
       await laEmpresa.addUsuario(newUser);
       req.body.resultado = {
         status: "200",
-        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${elRol.rol} se ah creado exitosamente!, asociado a la Empresa: ${laEmpresa.nombre}`,
+        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${elRol[0].rol} se ah creado exitosamente!, asociado a la Empresa: ${laEmpresa.nombre}`,
       };
       next();
     } else {
