@@ -30,19 +30,6 @@ module.exports = (sequelize) => {
           msg: "El Formato del Email no es el correcto",
         },
       },
-    },
-    // clave: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   validate: {
-    //     len: {
-    //       args: [5, 20],
-    //       msg: "La Clave debe ser entre 5 a 20 caracteres",
-    //     },
-    //   },
-    //   set(value){
-    //     this.setDataValue('clave', hash(value));
-    //   }
-    // },
+    }
   });
 };
