@@ -16,20 +16,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isAlpha: {
-          msg: "El Nombre debe ser solo Texto",
-        },
-      },
+      // validate: {
+      //   isAlpha: {
+      //     msg: "El Nombre debe ser solo Texto",
+      //   },
+      // },
     },
     apellido: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: {
-          msg: "El Apellido debe ser solo Texto",
-        },
-      },
+      // validate: {
+      //   isAlpha: {
+      //     msg: "El Apellido debe ser solo Texto",
+      //   },
+      // },
     },
     email: {
       type: DataTypes.STRING,
