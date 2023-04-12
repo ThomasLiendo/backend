@@ -3,6 +3,7 @@ const { Empresa, Usuario, Rol, Op } = require("../../db");
 const createEmpresa = async (req, res, next) => {
   try {
     const { nombre, descripcion, email, clave } = req.body;
+    console.log(nombre === undefined)
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
         `El Nombre del Producto debe ser unicamente texto, y has insertado ${
