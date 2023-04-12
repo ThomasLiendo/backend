@@ -40,5 +40,9 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    observaciones: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   });
 };

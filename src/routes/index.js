@@ -6,10 +6,11 @@ const express = require("express");
 const Home = require("./home");
 const User = require("./user");
 const Product = require("./producto");
-const Categories = require("./categories");
+const Categories = require("./categorias");
 const Deposito = require("./deposito");
 const Rols = require("./rol");
 const Empresas = require("./empresas");
+const Subcategoria = require("./subcategorias");
 
 const router = express();
 
@@ -25,6 +26,7 @@ router.use("/usuarios", User);
 router.use("/depositos", Deposito);
 router.use("/roles", Rols);
 router.use("/", Home);
+router.use("/subcategorias", Subcategoria);
 
 router.all("*", (req, res) => {
   res.redirect("/");
