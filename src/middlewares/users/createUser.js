@@ -8,7 +8,7 @@ const createUser = async (req, res, next) => {
     nombre = nombre[0].toUpperCase() + nombre.slice(1).toLowerCase();
     apellido = apellido[0].toUpperCase() + apellido.slice(1).toLowerCase();
     email = email.toLowerCase();
-    const elRol = await Rol.findAll({
+    const elRol = await Rol.findOne({
       where: { id: rolID },
     });
     const laEmpresa = await Empresa.findByPk(empresaID);
@@ -48,7 +48,7 @@ const createUser = async (req, res, next) => {
       await laEmpresa.addUsuario(newUser);
       req.body.resultado = {
         status: "200",
-        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${elRol[0].rol} se ah creado exitosamente!, asociado a la Empresa: ${laEmpresa.nombre}`,
+        respuesta: `el Usuario ${nombre} ${apellido} con email: ${email} y con el rol ${elRol.rol} se ah creado exitosamente!, asociado a la Empresa: ${laEmpresa.nombre}`,
       };
       next();
     } else {
