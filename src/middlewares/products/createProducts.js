@@ -1,8 +1,8 @@
-const { Producto, Categoria, Op } = require("../../db");
+const { Producto, Categoria, Subcategoria, Op } = require("../../db");
 
 const createProduct = async (req, res, next) => {
   try {
-    const { nombre, descripcion, codigo } = req.body;
+    const { nombre, descripcion, codigo, subcategoriaID } = req.body;
     // const { categoria } = req.body;
     // const category = await categoria.findAll()
     if (typeof nombre !== "string" || nombre === undefined) {
@@ -17,10 +17,13 @@ const createProduct = async (req, res, next) => {
       descripcion,
       codigo,
     });
+    const subcategoria = await Subcategoria.findByPk(subcategoriaID);
+    await subcategoria.addProducto(newProduct);
     req.body.resultado = {
       status: "200",
       respuesta: `el Producto ${nombre} se ah creado exitosamente`,
     };
+
     next();
   } catch (err) {
     console.log("error en createProduct");
