@@ -7,6 +7,7 @@ const Home = require("./home");
 const User = require("./user");
 const Product = require("./producto");
 const Categories = require("./categories");
+const SubCategories = require("./subcategoria")
 const Deposito = require("./deposito");
 const Rols = require("./rol");
 const Empresas = require("./empresas");
@@ -20,6 +21,7 @@ router.use(express.json());
 
 router.use("/empresas", Empresas);
 router.use("/categorias", Categories);
+router.use("/subcategorias", SubCategories);
 router.use("/productos", Product);
 router.use("/usuarios", User);
 router.use("/depositos", Deposito);

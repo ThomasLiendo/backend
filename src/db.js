@@ -43,8 +43,8 @@ const { Categoria, Subcategoria, Producto, Rol, Usuario, Deposito, Empresa } =
 
 // Aca vendrian las relaciones
 
-Categoria.hasMany(Subcategoria);
-Subcategoria.belongsTo(Categoria);
+Categoria.belongsToMany(Subcategoria, { through: "Categoria_Subcategoria" });
+Subcategoria.belongsToMany(Categoria, { through: "Categoria_Subcategoria" });
 
 Subcategoria.hasMany(Producto);
 Producto.belongsTo(Subcategoria);
@@ -69,6 +69,8 @@ Deposito.belongsToMany(Usuario, { through: "Usuario_Deposito" });
 
 Categoria.belongsToMany(Producto, { through: "Categoria_Producto" });
 Producto.belongsToMany(Categoria, { through: "Categoria_Producto" });
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
