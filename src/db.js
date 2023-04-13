@@ -38,7 +38,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Categoria, Subcategoria, Producto, Rol, Usuario, Deposito, Empresa } =
+const { Categoria, Subcategoria, Producto, Rol, Usuario, Deposito, Empresa, TipoDeposito } =
   sequelize.models; // añadir modelos
 
 // Aca vendrian las relaciones
@@ -56,10 +56,13 @@ Empresa.hasMany(Deposito);
 Deposito.belongsTo(Empresa);
 
 Empresa.hasMany(Producto);
-Producto.belongsTo(Empresa)
+Producto.belongsTo(Empresa);
 
 Deposito.belongsToMany(Producto, { through: "Deposito_Producto" });
 Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
+
+Deposito.belongsToMany(TipoDeposito, { through: "Deposito_TipoDeposito" });
+TipoDeposito.belongsToMany(Deposito, { through: "Deposito_TipoDeposito" });
 
 Rol.belongsToMany(Usuario, { through: "Usuario_Rol" });
 Usuario.belongsToMany(Rol, { through: "Usuario_Rol" });
