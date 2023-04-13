@@ -44,9 +44,5 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    tipo:{
-      type:DataTypes.ENUM,
-      values: ['MAQUINARIA', 'VEHICULO', 'MATERIAL']
-    }
   });
 };

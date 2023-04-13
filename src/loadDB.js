@@ -1,5 +1,6 @@
 const roles = require("./json/roles.json");
-const { Rol } = require("./db.js");
+const tipoDepositos = require("./json/tipoDeposito.json")
+const { Rol, TipoDeposito } = require("./db.js");
 
 async function fnRols() {
   for (const r of roles) {
@@ -7,5 +8,11 @@ async function fnRols() {
   }
 }
 
+async function fnTipoDepositos(){
+  for (const t of tipoDepositos){
+    await TipoDeposito.create(t)
+  }
+}
 
-module.exports=fnRols;
+
+module.exports={fnRols, fnTipoDepositos};

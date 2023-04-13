@@ -1,4 +1,5 @@
 const { Deposito } = require("../../db");
+const TipoDeposito = require("../../models/TipoDeposito");
 
 const createDeposito = async (req, res, next) => {
   try {
@@ -11,6 +12,7 @@ const createDeposito = async (req, res, next) => {
       pais,
       descripcion,
       observaciones,
+      tipoDepositoID,
     } = req.body;
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
@@ -54,6 +56,8 @@ const createDeposito = async (req, res, next) => {
         descripcion,
         observaciones,
       });
+      const tipoDeposito = await TipoDeposito.findByPk(tipoDepositoID);
+      await newDeposito.addTipoDeposito(tipoDeposito)
       req.body.resultado = {
         status: "200",
         respuesta: `el deposito ${nombre} se ah creado exitosamente!`,
