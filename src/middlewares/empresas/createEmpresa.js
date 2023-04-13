@@ -12,7 +12,7 @@ const createEmpresa = async (req, res, next) => {
       );
     }
 
-    const elRol = await Rol.findByPk(1);
+    const elRol = await Rol.findByPk(2);
     const newEmpresa = await Empresa.create({
       nombre,
       descripcion,
@@ -23,8 +23,8 @@ const createEmpresa = async (req, res, next) => {
       nombre,
       apellido:"Administrador",
       clave: nombre + this.apellido,
-      rolID: 1,
-      empresaID: newEmpresa.id,
+      //rolID: 1,
+      //empresaID: newEmpresa.id,
     });
 
     await newAdmin.addRols(elRol);

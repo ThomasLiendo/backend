@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Arena ACME 10kg",
+    "descripcion": "Arena de 10kg marca ACME",
+    "subcategoriaID": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Arena ACME 5kg",
+    "descripcion": "Arena de 5kg marca ACME",
+    "subcategoriaID": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Ford Bronco",
+    "descripcion": "Vehiculo de Transporte para transportar materiales",
+    "subcategoriaID": 2
+  },
+  {
+    "id": 4,
+    "nombre": "Maquinaria ABC",
+    "descripcion": "Maquinaria que se utiliza para aplanar arena",
+    "subcategoriaID": 3
+  }
+]
