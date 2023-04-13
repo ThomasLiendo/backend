@@ -16,20 +16,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      // validate: {
-      //   isAlpha: {
-      //     msg: "El Nombre debe ser solo Texto",
-      //   },
-      // },
     },
     apellido: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   isAlpha: {
-      //     msg: "El Apellido debe ser solo Texto",
-      //   },
-      // },
     },
     email: {
       type: DataTypes.STRING,
@@ -54,9 +44,15 @@ module.exports = (sequelize) => {
         this.setDataValue("clave", hash(value));
       },
     },
-    //  img: {
-    //   type: DataTypes.TEXT, //puse .text para que cuando se ponga una imagen me permita mas caracteres para poner un link largo
-    //   allowNull: true,
-    // },
+    imagen: {
+      type: DataTypes.TEXT, //puse .text para que cuando se ponga una imagen me permita mas caracteres para poner un link largo
+      allowNull: true,
+      defaultValue: "https://www.softzone.es/app/uploads/2018/04/guest.png",
+    },
+    bloqueo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
   });
 };

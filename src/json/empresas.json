@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Empresa A",
+    "descripcion": "Dedicado a la contrucción",
+    "email": "EmpresaA@gmail.com"
+  },
+  {
+    "id": 2,
+    "nombre": "Empresa B",
+    "descripcion": "Dedicado a la contrucción",
+    "email": "EmpresaB@gmail.com"
+  },
+  {
+    "id": 3,
+    "nombre": "Empresa C",
+    "descripcion": "Dedicado a la contrucción",
+    "email": "EmpresaC@gmail.com"
+  },
+  {
+    "id": 4,
+    "nombre": "Empresa D",
+    "descripcion": "Dedicado a la contrucción",
+    "email": "EmpresaD@gmail.com"
+  }
+]
