@@ -12,7 +12,7 @@ const updateUser = async (req, res, next) => {
           apellido: apellido || usuario.apellido,
           email: email || usuario.email,
           clave: clave || usuario.clave,
-          bloqueo: bloqueo || usuario.bloqueo
+          bloqueo: bloqueo || usuario.bloqueo,
         },
         { where: { id: id } }
       );
@@ -26,10 +26,10 @@ const updateUser = async (req, res, next) => {
       };
       next();
     } else {
-      throw new Error(`Rol con el ID: ${id} no se ah encontrado`);
+      throw new Error(`Usuario con el ID: ${id} no se ah encontrado`);
     }
   } catch (err) {
-    console.log("error en updateRol");
+    console.log("error en updateUser");
     console.log(err);
     req.body.resultado = { status: 404, resultado: err.message };
     next();
