@@ -1,5 +1,4 @@
-const { Deposito } = require("../../db");
-const TipoDeposito = require("../../models/TipoDeposito");
+const { Deposito, TipoDeposito } = require("../../db");
 
 const createDeposito = async (req, res, next) => {
   try {

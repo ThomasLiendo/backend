@@ -2,25 +2,21 @@
   {
     "id": 1,
     "nombre": "Subcategoria A",
-    "descripcion": "En esta Subcategoria es solo para bienes de uso",
-    "categoriaID": 1
+    "descripcion": "En esta Subcategoria es solo para bienes de uso"
   },
   {
     "id": 2,
     "nombre": "Subcategoria B",
-    "descripcion": "En esta Subcategoria es solo para bienes de consumo",
-    "categoriaID": 1
+    "descripcion": "En esta Subcategoria es solo para bienes de consumo"
   },
   {
     "id": 3,
     "nombre": "Subcategoria C",
-    "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID": 2
+    "descripcion": "En esta Subcategoria es solo para pruebas"
   },
   {
     "id": 4,
     "nombre": "Subcategoria D",
-    "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID": 3
+    "descripcion": "En esta Subcategoria es solo para pruebas"
   }
 ]
