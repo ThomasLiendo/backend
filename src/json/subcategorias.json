@@ -2,12 +2,12 @@
   {
     "id": 1,
     "nombre": "Subcategoria A",
-    "descripcion": "En esta Subcategoria es solo para bienes de uso"
+    "descripcion": "En esta Subcategoria es solo para pruebas"
   },
   {
     "id": 2,
     "nombre": "Subcategoria B",
-    "descripcion": "En esta Subcategoria es solo para bienes de consumo"
+    "descripcion": "En esta Subcategoria es solo para pruebas"
   },
   {
     "id": 3,

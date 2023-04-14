@@ -2,12 +2,12 @@
   {
     "id": 1,
     "nombre": "Categoria A",
-    "descripcion": "En esta Categoria es solo para bienes de uso"
+    "descripcion": "En esta Categoria es solo para pruebas"
   },
   {
     "id": 2,
     "nombre": "Categoria B",
-    "descripcion": "En esta Categoria es solo para bienes de consumo"
+    "descripcion": "En esta Categoria es solo para pruebas"
   },
   {
     "id": 3,
