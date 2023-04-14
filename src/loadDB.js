@@ -47,10 +47,19 @@ async function fnUsuarios(empresa) {
   await empresa.addUsuario(newAdmin);
 }
 
-async function fnDepositos(empresa) {
+async function fnDepositos() {
   for (const d of depositos) {
-    const deposito = await Deposito.create(d);
-    await empresa.addDeposito(deposito);
+    const [deposito, created] = await Deposito.findOrCreate({where:{nombre:d.nombre},defaults:{
+      nombre:d.nombre,
+      calle:d.calle,
+      altura:d.altura,
+      ciudad:d.ciudad,
+      provincia:d.provincia,
+      ciudad:d.ciudad,
+      pais:d.pais,
+      descripcion:d.descripcion,
+      observaciones:d.observaciones
+    }});
   }
 }
 
@@ -58,7 +67,11 @@ async function fnProducto(empresa) {
   for (const p of producto) {
     const [producto, created] = await Producto.findOrCreate({
       where: { nombre: p.nombre },
-      defaults: p,
+      defaults: {
+        id: p.id,
+        nombre: p.nombre,
+        descripcion: p.descripcion,
+      },
     });
     await empresa.addProducto(producto);
   }
@@ -66,18 +79,46 @@ async function fnProducto(empresa) {
 
 async function fnCategorias() {
   for (const cat of categoria) {
-    const categoria = await Categoria.create(cat);
-    fnSubcategoria(categoria);
+    await Categoria.create(cat);
   }
 }
 
-async function fnSubcategoria(categoria) {
+async function fnSubcategoria() {
   for (const sub of subcategoria) {
-    const [subcategoria, created] = await Subcategoria.findOrCreate({where:{nombre:sub.nombre},defaults:sub});
-    await categoria.addSubcategoria(subcategoria)
+    await Subcategoria.create(sub);
   }
 }
 
+async function fnRelProdSubCat() {
+  const categorias = await Categoria.findAll();
+  const subcategorias = await Subcategoria.findAll();
+  const productos = await Producto.findAll();
+  const depositos = await Deposito.findAll();
+  const empresas = await Empresa.findAll();
+
+  categorias.forEach(async (cat) => {
+    subcategorias.forEach(async (sub) => {
+      await cat.addSubcategoria(sub);
+    });
+  });
+
+  subcategorias.forEach(async (sub) => {
+    productos.forEach(async (prod) => {
+      await sub.addProducto(prod);
+    });
+  });
+
+  depositos.forEach(async (dep)=>{
+    empresas.forEach(async (emp)=>{
+      await emp.addDeposito(dep)
+    })
+  })
+
+  // for(const prod of productos ){
+  //   const depositos = await Deposito.findByPk();
+  // }
+
+}
 
 module.exports = {
   fnRols,
@@ -85,5 +126,6 @@ module.exports = {
   fnEmpresas,
   fnDepositos,
   fnCategorias,
-  
+  fnSubcategoria,
+  fnRelProdSubCat,
 };
