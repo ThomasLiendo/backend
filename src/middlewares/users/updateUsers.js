@@ -2,7 +2,7 @@ const { Usuario, Op } = require("../../db");
 
 const updateUser = async (req, res, next) => {
   try {
-    const { nombre, apellido, email, clave } = req.body;
+    const { nombre, apellido, email, clave, bloqueo } = req.body;
     const id = req.params.id;
     const usuario = await Usuario.findAll({ where: { id } });
     if (usuario.lenght !== 0) {
@@ -12,6 +12,7 @@ const updateUser = async (req, res, next) => {
           apellido: apellido || usuario.apellido,
           email: email || usuario.email,
           clave: clave || usuario.clave,
+          bloqueo: bloqueo || usuario.bloqueo
         },
         { where: { id: id } }
       );

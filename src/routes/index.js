@@ -11,7 +11,7 @@ const SubCategories = require("./subcategoria");
 const Deposito = require("./deposito");
 const Rols = require("./rol");
 const Empresas = require("./empresas");
-const TipoDepositos = require("./tipoDeposito")
+const TipoDepositos = require("./tipoDepositos")
 const router = express();
 
 router.use(express.json());

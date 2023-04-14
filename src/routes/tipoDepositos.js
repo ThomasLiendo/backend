@@ -9,7 +9,7 @@ const findTipoDepositoByID = require("../middlewares/tipoDepositos/findTipoDepos
 const router = Router();
 
 router.get("/", allTipoDepositos, async (req, res) => {
-  return res.json(req.body.allTipoDDepositos);
+  return res.json(req.body.allTipoDepositos);
 });
 router.get("/:id", findTipoDepositoByID, async (req, res) => {
   return res.json(req.body.findTipoDepositoByID);
