@@ -55,8 +55,8 @@ const {
 Categoria.belongsToMany(Subcategoria, { through: "Categoria_Subcategoria" });
 Subcategoria.belongsToMany(Categoria, { through: "Categoria_Subcategoria" });
 
-Subcategoria.hasMany(Producto);
-Producto.belongsTo(Subcategoria);
+Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
+Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });
 
 Empresa.hasMany(Usuario);
 Usuario.belongsTo(Empresa);
@@ -64,8 +64,8 @@ Usuario.belongsTo(Empresa);
 Empresa.hasMany(Deposito);
 Deposito.belongsTo(Empresa);
 
-Empresa.hasMany(Producto);
-Producto.belongsTo(Empresa);
+Empresa.belongsToMany(Producto, { through: "Empresa_Producto" });
+Producto.belongsToMany(Empresa, { through: "Empresa_Producto" });
 
 TipoSuscripcion.hasMany(Empresa);
 Empresa.belongsTo(TipoSuscripcion);

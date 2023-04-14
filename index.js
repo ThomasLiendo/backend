@@ -4,6 +4,7 @@ const {
   fnRols,
   fnTipoDepositos,
   fnEmpresas,
+  fnCategorias,
   fnTipoSuscripcion,
 } = require("./src/loadDB.js");
 
@@ -13,6 +14,7 @@ conn.sync({ force: true }).then(async () => {
     await fnRols();
     await fnTipoDepositos();
     await fnTipoSuscripcion();
+    await fnCategorias();
     await fnEmpresas();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
