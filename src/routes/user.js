@@ -23,9 +23,7 @@ router.put("/:id", updateUsers, async (req, res) => {
 });
 
 router.delete("/:id", deleteUser, async (req, res) => {
-  return res.json({
-    respuesta: `usuario con id ${req.body.eliminado} eliminado`,
-  });
+  return res.json(req.body.eliminado);
 });
 
 module.exports = router;
