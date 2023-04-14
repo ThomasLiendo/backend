@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const hash = require('../functions/hash');
+const hash = require("../functions/hash");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -30,6 +30,11 @@ module.exports = (sequelize) => {
           msg: "El Formato del Email no es el correcto",
         },
       },
-    }
+    },
+    bloqueo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false, //El default es por si no le pasan algo por body, setea ese valor por defecto
+    },
   });
 };
