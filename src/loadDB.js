@@ -1,7 +1,14 @@
 const roles = require("./json/roles.json");
 const tipoDepositos = require("./json/tipoDeposito.json");
 const empresas = require("./json/empresas.json");
-const { Rol, TipoDeposito, Empresa, Usuario } = require("./db.js");
+const {
+  Rol,
+  TipoDeposito,
+  TipoSuscripcion,
+  Empresa,
+  Usuario,
+} = require("./db.js");
+const tipoSuscripcion = require("./json/tipoSuscripcion.json");
 
 async function fnRols() {
   for (const r of roles) {
@@ -12,6 +19,11 @@ async function fnRols() {
 async function fnTipoDepositos() {
   for (const t of tipoDepositos) {
     await TipoDeposito.create(t);
+  }
+}
+async function fnTipoSuscripcion() {
+  for (const r of tipoSuscripcion) {
+    await TipoSuscripcion.create(r);
   }
 }
 
@@ -28,8 +40,8 @@ async function fnEmpresas() {
       apellido: "Administrador",
       clave: e.nombre + this.apellido,
     });
-    await e.addUsuario(newAdmin)
+    await e.addUsuario(newAdmin);
   });
 }
 
-module.exports = { fnRols, fnTipoDepositos, fnEmpresas };
+module.exports = { fnRols, fnTipoDepositos, fnEmpresas, fnTipoSuscripcion };

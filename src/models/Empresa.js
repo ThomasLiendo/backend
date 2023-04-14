@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
     },
     nombre: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false, //si o si lo necesita para poder crear el modelo
       unique: true,
     },
     descripcion: {
@@ -41,15 +41,15 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true,
     },
-    suscripcionTipo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: true,
-    },
+    // suscripcionTipo: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   defaultValue: "Sin Suscripcion",
+    // },
     suscripcionTiempo: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: true,
+      defaultValue: true, //El default true es por si no le pasan algo por body, setea ese valor por defecto
     },
   });
 };

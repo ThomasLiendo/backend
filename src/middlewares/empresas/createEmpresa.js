@@ -1,9 +1,10 @@
 const { Empresa, Usuario, Rol, Op } = require("../../db");
+const TipoSuscripcion = require("../../models/TipoSuscripcion");
 
 const createEmpresa = async (req, res, next) => {
   try {
-    const { nombre, descripcion, email, clave } = req.body;
-    console.log(nombre === undefined)
+    const { nombre, descripcion, email, clave, tipoSuscripcionID } = req.body;
+    console.log(nombre === undefined);
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
         `El Nombre del Producto debe ser unicamente texto, y has insertado ${
@@ -21,12 +22,13 @@ const createEmpresa = async (req, res, next) => {
     const newAdmin = await Usuario.create({
       email,
       nombre,
-      apellido:"Administrador",
+      apellido: "Administrador",
       clave: nombre + this.apellido,
       //rolID: 1,
       //empresaID: newEmpresa.id,
     });
-
+    const tipoSuscripcion = await TipoSuscripcion.findByPk(tipoSuscripcionID);
+    await newEmpresa.addTipoSuscripcion(tipoSuscripcion);
     await newAdmin.addRols(elRol);
     await newEmpresa.addUsuario(newAdmin);
 
