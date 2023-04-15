@@ -3,7 +3,7 @@ const { Empresa, Usuario, Rol, Op } = require("../../db");
 const createEmpresa = async (req, res, next) => {
   try {
     const { nombre, descripcion, email, clave } = req.body;
-    console.log(nombre === undefined)
+    console.log(nombre === undefined);
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
         `El Nombre del Producto debe ser unicamente texto, y has insertado ${
@@ -12,22 +12,28 @@ const createEmpresa = async (req, res, next) => {
       );
     }
 
-    const elRol = await Rol.findByPk(2);
+    console.log("Pendiente x Corregir Crear empresa error de llave de duplicidad");
+
+    const find = await Empresa.findAll();
+
     const newEmpresa = await Empresa.create({
+      id: find.length + 1,
       nombre,
       descripcion,
       email,
     });
+    console.log("-------");
     const newAdmin = await Usuario.create({
       email,
       nombre,
-      apellido:"Administrador",
+      apellido: "Administrador",
       clave: nombre + this.apellido,
       //rolID: 1,
       //empresaID: newEmpresa.id,
     });
 
-    await newAdmin.addRols(elRol);
+    const elRol = await Rol.findByPk(2);
+    await newAdmin.setRol(elRol);
     await newEmpresa.addUsuario(newAdmin);
 
     req.body.resultado = {

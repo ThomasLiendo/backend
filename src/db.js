@@ -51,32 +51,30 @@ const {
 
 // Aca vendrian las relaciones
 
-Categoria.belongsToMany(Subcategoria, { through: "Categoria_Subcategoria" });
-Subcategoria.belongsToMany(Categoria, { through: "Categoria_Subcategoria" });
-
-Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
-Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });
-
 Empresa.hasMany(Usuario);
 Usuario.belongsTo(Empresa);
 
 Empresa.hasMany(Deposito);
 Deposito.belongsTo(Empresa);
 
+/////////////////
 Empresa.belongsToMany(Producto, { through: "Empresa_Producto" });
 Producto.belongsToMany(Empresa, { through: "Empresa_Producto" });
-
+/////////////////
 Deposito.belongsToMany(Producto, { through: "Deposito_Producto" });
 Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
 
-Deposito.belongsToMany(TipoDeposito, { through: "Deposito_TipoDeposito" });
-TipoDeposito.belongsToMany(Deposito, { through: "Deposito_TipoDeposito" });
+TipoDeposito.hasMany(Deposito);
+Deposito.belongsTo(TipoDeposito);
 
-Rol.belongsToMany(Usuario, { through: "Usuario_Rol" });
-Usuario.belongsToMany(Rol, { through: "Usuario_Rol" });
+Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
+Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });
 
-Usuario.belongsToMany(Deposito, { through: "Usuario_Deposito" });
-Deposito.belongsToMany(Usuario, { through: "Usuario_Deposito" });
+Categoria.belongsToMany(Subcategoria, { through: "Categoria_Subcategoria" });
+Subcategoria.belongsToMany(Categoria, { through: "Categoria_Subcategoria" });
+
+Rol.hasMany(Usuario);
+Usuario.belongsTo(Rol);
 
 Categoria.belongsToMany(Producto, { through: "Categoria_Producto" });
 Producto.belongsToMany(Categoria, { through: "Categoria_Producto" });

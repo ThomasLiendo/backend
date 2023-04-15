@@ -33,12 +33,12 @@ module.exports = (sequelize) => {
     },
     bloqueo: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      //allowNull: false,
       defaultValue: false, //El default es por si no le pasan algo por body, setea ese valor por defecto
     },
     verificado: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      //allowNull: false,
       defaultValue: true,
     },
     suscripcionTipo: {

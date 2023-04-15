@@ -11,11 +11,8 @@ const {
 const allEmpresa = async (req, res, next) => {
   try {
     req.body.AllEmpresas = await Empresa.findAll({
-      include: Usuario,
-      Deposito,
-      Producto,
-      Categoria,
-      Subcategoria,
+      include: [Usuario,
+      Deposito]
     });
     next();
   } catch (err) {

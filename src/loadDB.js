@@ -36,38 +36,42 @@ async function fnEmpresas() {
   for (const e of empresas) {
     const empresa = await Empresa.create(e);
     fnUsuarios(empresa);
-    //fnDepositos(empresa);
     fnProducto(empresa);
   }
 }
 
 async function fnUsuarios(empresa) {
+  const adminRol = await Rol.findByPk(2)
   const newAdmin = await Usuario.create({
     email: empresa.email,
     nombre: empresa.nombre,
     apellido: "Administrador",
     clave: empresa.nombre + this.apellido,
   });
+
   await empresa.addUsuario(newAdmin);
+  await newAdmin.setRol(adminRol)
 }
 
 async function fnDepositos() {
   const tiposDepos = await TipoDeposito.findAll();
   for (const d of depositos) {
-    const [deposito, created] = await Deposito.findOrCreate({where:{nombre:d.nombre},defaults:{
-      nombre:d.nombre,
-      calle:d.calle,
-      altura:d.altura,
-      ciudad:d.ciudad,
-      provincia:d.provincia,
-      ciudad:d.ciudad,
-      pais:d.pais,
-      descripcion:d.descripcion,
-      observaciones:d.observaciones
-    }});
+    const [deposito, created] = await Deposito.findOrCreate({
+      where: { nombre: d.nombre },
+      defaults: {
+        nombre: d.nombre,
+        calle: d.calle,
+        altura: d.altura,
+        ciudad: d.ciudad,
+        provincia: d.provincia,
+        ciudad: d.ciudad,
+        pais: d.pais,
+        descripcion: d.descripcion,
+        observaciones: d.observaciones,
+      },
+    });
     const random = getRandom(0, tiposDepos.length - 1);
-    await deposito.addTipoDeposito(tiposDepos[random].dataValues.id);
-
+    await deposito.setTipoDeposito(tiposDepos[random]);
   }
 }
 
@@ -101,35 +105,35 @@ async function fnRelProdSubCat() {
   const categorias = await Categoria.findAll();
   const subcategorias = await Subcategoria.findAll();
   const productos = await Producto.findAll();
-  
+
   categorias.forEach(async (cat) => {
     subcategorias.forEach(async (sub) => {
       await cat.addSubcategoria(sub);
     });
   });
-  
+
   subcategorias.forEach(async (sub) => {
     productos.forEach(async (prod) => {
       await sub.addProducto(prod);
     });
   });
-  
+
   const empresas = await Empresa.findAll();
 
   // empresas.forEach(async (emp)=>{
   //   await emp.addDepositos(depositos)
   // })
 
-  empresas.forEach(async (emp)=>{
-    for(const dep of depositos){
-      if(emp.id === dep.empresaID){
-        console.log("true")
-        const deposit = await Deposito.findOne({where:{nombre:dep.nombre}})
-        await emp.addDeposito(deposit)
+  empresas.forEach(async (emp) => {
+    for (const dep of depositos) {
+      if (emp.id === dep.empresaID) {
+        const deposit = await Deposito.findOne({
+          where: { nombre: dep.nombre },
+        });
+        await emp.addDeposito(deposit);
       }
     }
-  })
-
+  });
 }
 
 module.exports = {
