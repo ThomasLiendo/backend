@@ -1,9 +1,9 @@
-const { Deposito, Empresa, Productos } = require("../../db");
+const { Deposito, Empresa, Productos, TipoDeposito } = require("../../db");
 
 const allDepositos = async (req, res, next) => {
   try {
     req.body.allDepositos = await Deposito.findAll({
-      includes: [Empresa, Productos],
+      includes: [Empresa, Productos, TipoDeposito],
     });
     next();
   } catch (error) {
