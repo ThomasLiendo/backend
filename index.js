@@ -14,7 +14,7 @@ const {
 conn.sync({ force: true }).then(async () => {
   server.listen(3001, async () => {
     await fnRols();
-    await fnTipoDepositos();
+    await fnTipoDepositos(); 
     await fnEmpresas();
     await fnDepositos();
     await fnCategorias();

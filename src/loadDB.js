@@ -16,6 +16,10 @@ const {
   Producto,
 } = require("./db.js");
 
+function getRandom(min, max) {
+  return min + Math.floor(Math.random() * (max - min + 1));
+}
+
 async function fnRols() {
   for (const r of roles) {
     await Rol.create(r);
@@ -32,34 +36,42 @@ async function fnEmpresas() {
   for (const e of empresas) {
     const empresa = await Empresa.create(e);
     fnUsuarios(empresa);
-    //fnDepositos(empresa);
     fnProducto(empresa);
   }
 }
 
 async function fnUsuarios(empresa) {
+  const adminRol = await Rol.findByPk(2)
   const newAdmin = await Usuario.create({
     email: empresa.email,
     nombre: empresa.nombre,
     apellido: "Administrador",
     clave: empresa.nombre + this.apellido,
   });
+
   await empresa.addUsuario(newAdmin);
+  await newAdmin.setRol(adminRol)
 }
 
 async function fnDepositos() {
+  const tiposDepos = await TipoDeposito.findAll();
   for (const d of depositos) {
-    const [deposito, created] = await Deposito.findOrCreate({where:{nombre:d.nombre},defaults:{
-      nombre:d.nombre,
-      calle:d.calle,
-      altura:d.altura,
-      ciudad:d.ciudad,
-      provincia:d.provincia,
-      ciudad:d.ciudad,
-      pais:d.pais,
-      descripcion:d.descripcion,
-      observaciones:d.observaciones
-    }});
+    const [deposito, created] = await Deposito.findOrCreate({
+      where: { nombre: d.nombre },
+      defaults: {
+        nombre: d.nombre,
+        calle: d.calle,
+        altura: d.altura,
+        ciudad: d.ciudad,
+        provincia: d.provincia,
+        ciudad: d.ciudad,
+        pais: d.pais,
+        descripcion: d.descripcion,
+        observaciones: d.observaciones,
+      },
+    });
+    const random = getRandom(0, tiposDepos.length - 1);
+    await deposito.setTipoDeposito(tiposDepos[random]);
   }
 }
 
@@ -93,8 +105,6 @@ async function fnRelProdSubCat() {
   const categorias = await Categoria.findAll();
   const subcategorias = await Subcategoria.findAll();
   const productos = await Producto.findAll();
-  const depositos = await Deposito.findAll();
-  const empresas = await Empresa.findAll();
 
   categorias.forEach(async (cat) => {
     subcategorias.forEach(async (sub) => {
@@ -108,16 +118,22 @@ async function fnRelProdSubCat() {
     });
   });
 
-  depositos.forEach(async (dep)=>{
-    empresas.forEach(async (emp)=>{
-      await emp.addDeposito(dep)
-    })
-  })
+  const empresas = await Empresa.findAll();
 
-  // for(const prod of productos ){
-  //   const depositos = await Deposito.findByPk();
-  // }
+  // empresas.forEach(async (emp)=>{
+  //   await emp.addDepositos(depositos)
+  // })
 
+  empresas.forEach(async (emp) => {
+    for (const dep of depositos) {
+      if (emp.id === dep.empresaID) {
+        const deposit = await Deposito.findOne({
+          where: { nombre: dep.nombre },
+        });
+        await emp.addDeposito(deposit);
+      }
+    }
+  });
 }
 
 module.exports = {
