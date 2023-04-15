@@ -9,7 +9,7 @@
     "pais":"Pais",
     "descripcion":"Deposito para solo Maquinarias pesadas",
     "observaciones":"ninguno",
-    "subcategoriaID": 1
+    "empresaID": 1
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "pais":"Pais",
     "descripcion":"Deposito para solo Maquinarias pesadas",
     "observaciones":"ninguno",
-    "subcategoriaID": 1
+    "empresaID": 1
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "pais":"Pais",
     "descripcion":"Deposito para solo Maquinarias pesadas",
     "observaciones":"ninguno",
-    "subcategoriaID": 2
+    "empresaID": 2
   },
   {
     "id": 4,
@@ -45,6 +45,18 @@
     "pais":"Pais",
     "descripcion":"Deposito para solo Maquinarias pesadas",
     "observaciones":"ninguno",
-    "subcategoriaID": 3
+    "empresaID": 3
+  },
+  {
+    "id": 5,
+    "nombre": "La Calle Deposit",
+    "calle": "Calle",
+    "altura":"3300",
+    "ciudad":"Ciudad",
+    "provincia":"Provincia",
+    "pais":"Pais",
+    "descripcion":"Deposito para solo Maquinarias pesadas",
+    "observaciones":"ninguno",
+    "empresaID": 4
   }
 ]
