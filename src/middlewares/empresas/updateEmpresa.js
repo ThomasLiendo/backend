@@ -18,7 +18,7 @@ const updateEmpresa = async (req, res, next) => {
       );
       req.body.resultado = {
         status: "200",
-        respuesta: `El Empresa ${nombre} se ah actualizado exitosamente`,
+        respuesta: `El Empresa ${idEmpresa.nombre} se ah actualizado exitosamente`,
       };
       next();
     } else {
