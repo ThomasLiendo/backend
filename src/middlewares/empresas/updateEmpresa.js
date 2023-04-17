@@ -17,7 +17,8 @@ const updateEmpresa = async (req, res, next) => {
         },
         { where: { id: id } }
       );
-      console.log("editado a: ",idEmpresa.bloqueo)
+      console.log("nombre de la empresa: ", idEmpresa.nombre)
+      console.log("editado a: ", idEmpresa.bloqueo)
       req.body.resultado = {
         status: "200",
         respuesta: `El Empresa ${idEmpresa.nombre} se ah actualizado exitosamente`,
