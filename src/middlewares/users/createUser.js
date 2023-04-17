@@ -43,7 +43,6 @@ const createUser = async (req, res, next) => {
           clave: nombre + apellido,
         });
       }
-      console.log(elRol);
       await newUser.setRol(elRol);
       await laEmpresa.addUsuario(newUser);
       req.body.resultado = {
