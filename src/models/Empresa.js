@@ -49,7 +49,12 @@ module.exports = (sequelize) => {
     suscripcionTiempo: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: true,
+      defaultValue: new Date().setDate(new Date().getDate() + 30),
     },
+    suscripcionFecha: {
+      type:DataTypes.DATE,
+      allowNull:true,
+      defaultValue: DataTypes.NOW
+    }
   });
 };
