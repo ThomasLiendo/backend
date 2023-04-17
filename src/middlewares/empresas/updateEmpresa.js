@@ -5,6 +5,7 @@ const updateEmpresa = async (req, res, next) => {
     let { nombre, descripcion, email, clave, bloqueo } = req.body;
     const id = req.params.id;
     const idEmpresa = await Empresa.findAll({ where: { id } });
+    console.log("id: ",id)
     console.log("el bloqueo inicial estaba en: ",bloqueo)
     if (idEmpresa.lenght !== 0) {
       await Empresa.update(
