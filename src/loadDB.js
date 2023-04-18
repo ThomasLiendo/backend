@@ -31,6 +31,11 @@ async function fnTipoDepositos() {
     await TipoDeposito.create(t);
   }
 }
+async function fnTipoSuscripcion() {
+  for (const r of tipoSuscripcion) {
+    await TipoSuscripcion.create(r);
+  }
+}
 
 async function fnEmpresas() {
   for (const e of empresas) {
@@ -41,7 +46,7 @@ async function fnEmpresas() {
 }
 
 async function fnUsuarios(empresa) {
-  const adminRol = await Rol.findByPk(2)
+  const adminRol = await Rol.findByPk(2);
   const newAdmin = await Usuario.create({
     email: empresa.email,
     nombre: empresa.nombre,
@@ -50,7 +55,7 @@ async function fnUsuarios(empresa) {
   });
 
   await empresa.addUsuario(newAdmin);
-  await newAdmin.setRol(adminRol)
+  await newAdmin.setRol(adminRol);
 }
 
 async function fnDepositos() {
@@ -82,7 +87,7 @@ async function fnProducto(empresa) {
       defaults: {
         nombre: p.nombre,
         descripcion: p.descripcion,
-        codigo:p.codigo,
+        codigo: p.codigo,
       },
     });
     await empresa.addProducto(producto);
