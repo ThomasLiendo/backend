@@ -2,7 +2,7 @@ const { Producto, Op } = require("../../db");
 
 const updateProduct = async (req, res, next) => {
   try {
-    const { nombre, cantidad, observaciones, informacion, codigo } = req.body;
+    const { nombre, cantidad, observaciones, informacion, codigo, subcategoriaID, depositoID } = req.body;
     const id = req.params.id;
     const producto = await Producto.findAll({ where: { id } });
     if (producto.lenght !== 0) {
@@ -13,6 +13,8 @@ const updateProduct = async (req, res, next) => {
           observaciones:observaciones || producto.observaciones,
           informacion:informacion || producto.informacion,
           codigo: codigo || producto.codigo,
+          subcategoriaID: subcategoriaID || producto.subcategoriaID,
+          depositoID: depositoID || producto.depositoID,
         },
         { where: { id: id } }
       );

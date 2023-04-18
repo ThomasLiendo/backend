@@ -47,6 +47,10 @@ module.exports = (sequelize) => {
     subcategoriaID: {
       type: DataTypes.INTEGER,
       unique: "codigoSubcategoria"
+    },
+    depositoID:{
+      type:DataTypes.INTEGER,
+      allowNull:true,
     }
   });
 };
