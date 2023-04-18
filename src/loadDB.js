@@ -92,6 +92,8 @@ async function fnProducto(empresa) {
         nombre: p.nombre,
         descripcion: p.descripcion,
         codigo: p.codigo,
+        subcategoriaID:p.subcategoriaID,
+        cantidad:p.cantidad,
       },
     });
     await empresa.addProducto(producto);
