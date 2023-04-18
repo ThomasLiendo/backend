@@ -19,6 +19,7 @@ module.exports = (sequelize) => {
     cantidad: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 0,
     },
     codigo: {
       type: DataTypes.STRING,

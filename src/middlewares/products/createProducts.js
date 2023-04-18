@@ -16,8 +16,9 @@ const createProduct = async (req, res, next) => {
       nombre,
       descripcion,
       codigo,
+      subcategoriaID
     });
-    await subcategoria.addProducto(newProduct);
+    //await subcategoria.addProducto(newProduct);
     req.body.resultado = {
       status: "200",
       respuesta: `el Producto ${nombre} se ah creado exitosamente`,
