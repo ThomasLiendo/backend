@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
     },
     nombre: {
       type: DataTypes.STRING,
-      allowNull: false, //si o si lo necesita para poder crear el modelo
+      allowNull: false,
       unique: true,
     },
     descripcion: {
@@ -41,20 +41,20 @@ module.exports = (sequelize) => {
       //allowNull: false,
       defaultValue: true,
     },
-    // suscripcionTipo: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    //   defaultValue: "Sin Suscripcion",
-    // },
+    suscripcionTipo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: true,
+    },
     suscripcionTiempo: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: new Date().setDate(new Date().getDate() + 30),
     },
     suscripcionFecha: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: DataTypes.NOW,
-    },
+      type:DataTypes.DATE,
+      allowNull:true,
+      defaultValue: DataTypes.NOW
+    }
   });
 };

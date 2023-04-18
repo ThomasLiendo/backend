@@ -2,7 +2,6 @@ const roles = require("./json/roles.json");
 const tipoDepositos = require("./json/tipoDeposito.json");
 const depositos = require("./json/depositos.json");
 const empresas = require("./json/empresas.json");
-const tipoSuscripcion = require("./json/tipoSuscripcion.json");
 const categoria = require("./json/categorias.json");
 const subcategoria = require("./json/subcategorias.json");
 const producto = require("./json/productos.json");
@@ -15,7 +14,6 @@ const {
   Categoria,
   Subcategoria,
   Producto,
-  TipoSuscripcion,
 } = require("./db.js");
 
 function getRandom(min, max) {
@@ -33,11 +31,6 @@ async function fnTipoDepositos() {
     await TipoDeposito.create(t);
   }
 }
-async function fnTipoSuscripcion() {
-  for (const r of tipoSuscripcion) {
-    await TipoSuscripcion.create(r);
-  }
-}
 
 async function fnEmpresas() {
   for (const e of empresas) {
@@ -48,7 +41,7 @@ async function fnEmpresas() {
 }
 
 async function fnUsuarios(empresa) {
-  const adminRol = await Rol.findByPk(2);
+  const adminRol = await Rol.findByPk(2)
   const newAdmin = await Usuario.create({
     email: empresa.email,
     nombre: empresa.nombre,
@@ -57,7 +50,7 @@ async function fnUsuarios(empresa) {
   });
 
   await empresa.addUsuario(newAdmin);
-  await newAdmin.setRol(adminRol);
+  await newAdmin.setRol(adminRol)
 }
 
 async function fnDepositos() {

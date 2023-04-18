@@ -1,8 +1,8 @@
 const { Empresa, Usuario, Rol, Op } = require("../../db");
-const TipoSuscripcion = require("../../models/TipoSuscripcion");
 
 const createEmpresa = async (req, res, next) => {
   try {
+
     const { nombre, descripcion, email, clave, tipoSuscripcionID } = req.body;
 
     console.log(nombre === undefined);
