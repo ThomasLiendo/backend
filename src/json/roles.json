@@ -1,22 +1,17 @@
 [
     {
-        "id":1,
         "rol":"Super Administrador"
     },
     {
-        "id":2,
         "rol":"Administrador"
     },
     {
-        "id":3,
         "rol":"Responsable de Deposito"
     },
     {
-        "id":4,
         "rol":"Responsable de Compras"
     },
     {
-        "id":5,
         "rol":"Responsable de Logistica"
     }
 ]

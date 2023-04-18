@@ -1,14 +1,11 @@
 [
     {
-        "id":1,
         "tipo":"Maquinaria"
     },
     {
-        "id":2,
         "tipo":"Vehiculo"
     },
     {
-        "id":3,
         "tipo":"Material"
     }
 ]

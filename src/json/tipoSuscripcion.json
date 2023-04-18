@@ -1,10 +1,8 @@
 [
   {
-    "id": "1",
     "tipo": " Suscripcion paga"
   },
   {
-    "id": "2",
     "tipo": " Suscripcion no paga"
   }
 ]

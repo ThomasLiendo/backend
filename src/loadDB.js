@@ -34,10 +34,8 @@ async function fnTipoDepositos() {
   }
 }
 async function fnTipoSuscripcion() {
-  for (const r of tipoSuscripcion) {
-    await TipoSuscripcion.create({
-      tipo: r.tipo,
-    });
+  for (const t of tipoSuscripcion) {
+    await TipoSuscripcion.create(t);
   }
 }
 
@@ -45,7 +43,8 @@ async function fnEmpresas() {
   for (const e of empresas) {
     const empresa = await Empresa.create(e);
     fnUsuarios(empresa);
-    fnProducto(empresa);
+    
+    // fnDepositos(empresa);
   }
 }
 
@@ -81,10 +80,11 @@ async function fnDepositos() {
     });
     const random = getRandom(0, tiposDepos.length - 1);
     await deposito.setTipoDeposito(tiposDepos[random]);
+    fnProducto(deposito);
   }
 }
 
-async function fnProducto(empresa) {
+async function fnProducto(deposito) {
   for (const p of producto) {
     const [producto, created] = await Producto.findOrCreate({
       where: { nombre: p.nombre },
@@ -96,7 +96,7 @@ async function fnProducto(empresa) {
         cantidad:p.cantidad,
       },
     });
-    await empresa.addProducto(producto);
+    await deposito.addProducto(producto);
   }
 }
 

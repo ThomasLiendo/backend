@@ -1,11 +1,9 @@
 [
   {
-    "id": 1,
     "nombre": "Bienes de Consumo",
     "descripcion": "En esta Categoria es solo se almacenan productos de bienes de consumo"
   },
   {
-    "id": 2,
     "nombre": "Bienes de Uso",
     "descripcion": "En esta Categoria es solo se almacenan productos de bienes de uso"
   }
