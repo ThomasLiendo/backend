@@ -30,16 +30,19 @@ module.exports = (sequelize) => {
       //cambiarlo a un array de observaciones
       type: DataTypes.TEXT,
       allowNull: true,
+      defaultValue: ""
     },
     descripcion: {
       type: DataTypes.TEXT,
       allowNull: false,
+      defaultValue: ""
     },
     imagen: {
       type: DataTypes.TEXT,
       validate: {
         isUrl: true,
       },
+      defaultValue: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/2048px-Imagen_no_disponible.svg.png"
     },
     subcategoriaID: {
       type: DataTypes.INTEGER,
