@@ -22,6 +22,7 @@ conn.sync({ force: true }).then(async () => {
     await fnCategorias();
     await fnSubcategoria();
     await fnRelProdSubCat();
+    await fnTipoSuscripcion();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });

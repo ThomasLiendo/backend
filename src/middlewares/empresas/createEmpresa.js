@@ -3,11 +3,8 @@ const TipoSuscripcion = require("../../models/TipoSuscripcion");
 
 const createEmpresa = async (req, res, next) => {
   try {
-<<<<<<< HEAD
     const { nombre, descripcion, email, clave, tipoSuscripcionID } = req.body;
-=======
-    const { nombre, descripcion, email, clave } = req.body;
->>>>>>> e44ac33a6e9f4c774cef3a6a0e223733ecd40da1
+
     console.log(nombre === undefined);
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
@@ -17,7 +14,9 @@ const createEmpresa = async (req, res, next) => {
       );
     }
 
-    console.log("Pendiente x Corregir Crear empresa error de llave de duplicidad");
+    console.log(
+      "Pendiente x Corregir Crear empresa error de llave de duplicidad"
+    );
 
     const find = await Empresa.findAll();
 
@@ -36,15 +35,10 @@ const createEmpresa = async (req, res, next) => {
       //rolID: 1,
       //empresaID: newEmpresa.id,
     });
-<<<<<<< HEAD
-    const tipoSuscripcion = await TipoSuscripcion.findByPk(tipoSuscripcionID);
-    await newEmpresa.addTipoSuscripcion(tipoSuscripcion);
-    await newAdmin.addRols(elRol);
-=======
 
     const elRol = await Rol.findByPk(2);
     await newAdmin.setRol(elRol);
->>>>>>> e44ac33a6e9f4c774cef3a6a0e223733ecd40da1
+
     await newEmpresa.addUsuario(newAdmin);
 
     req.body.resultado = {
