@@ -22,8 +22,8 @@ module.exports = (sequelize) => {
     },
     codigo: {
       type: DataTypes.STRING,
-      allowNull: true,
-      unique: true,
+      allowNull: false,
+      unique: "codigoSubcategoria"
     },
     observaciones: {
       //cambiarlo a un array de observaciones
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     descripcion: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     imagen: {
       type: DataTypes.TEXT,
@@ -40,5 +40,9 @@ module.exports = (sequelize) => {
         isUrl: true,
       },
     },
+    subcategoriaID: {
+      type: DataTypes.INTEGER,
+      unique: "codigoSubcategoria"
+    }
   });
 };

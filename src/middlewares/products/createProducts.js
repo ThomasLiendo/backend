@@ -3,8 +3,6 @@ const { Producto, Categoria, Subcategoria, Op } = require("../../db");
 const createProduct = async (req, res, next) => {
   try {
     const { nombre, descripcion, codigo, subcategoriaID } = req.body;
-    // const { categoria } = req.body;
-    // const category = await categoria.findAll()
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
         `El Nombre del Producto debe ser unicamente texto, y has insertado ${
@@ -12,12 +10,13 @@ const createProduct = async (req, res, next) => {
         }`
       );
     }
+
+    const subcategoria = await Subcategoria.findByPk(subcategoriaID);
     const newProduct = await Producto.create({
       nombre,
       descripcion,
       codigo,
     });
-    const subcategoria = await Subcategoria.findByPk(subcategoriaID);
     await subcategoria.addProducto(newProduct);
     req.body.resultado = {
       status: "200",

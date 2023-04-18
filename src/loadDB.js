@@ -80,9 +80,9 @@ async function fnProducto(empresa) {
     const [producto, created] = await Producto.findOrCreate({
       where: { nombre: p.nombre },
       defaults: {
-        id: p.id,
         nombre: p.nombre,
         descripcion: p.descripcion,
+        codigo:p.codigo,
       },
     });
     await empresa.addProducto(producto);

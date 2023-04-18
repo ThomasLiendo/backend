@@ -1,38 +1,44 @@
 [
   {
-    "id": 1,
+
     "nombre": "Arena ACME 10kg",
     "descripcion": "Arena de 10kg marca ACME",
+    "codigo":"#0001",
     "subcategoriaID":1
   },
   {
-    "id": 2,
+
     "nombre": "Arena ACME 5kg",
     "descripcion": "Arena de 5kg marca ACME",
+    "codigo":"#0002",
     "subcategoriaID":1
   },
   {
-    "id": 3,
+
     "nombre": "Tornillos de Rosca Tipo A",
     "descripcion": "Tornillo de repuestos para Rosca de Tipo A",
+    "codigo":"#0003",
     "subcategoriaID":2
   },
   {
-    "id": 4,
+
     "nombre": "Maquinaria ABC",
     "descripcion": "Maquinaria que se utiliza para aplanar arena",
+    "codigo":"#0004",
     "subcategoriaID":3
   },
   {
-    "id": 5,
+
     "nombre": "Ford Bronco",
     "descripcion": "Vehiculo de Transporte para transportar materiales",
+    "codigo":"#0005",
     "subcategoriaID":4
   },
   {
-    "id": 6,
+
     "nombre": "Martillo Strong",
     "descripcion": "Martillo Marca Strong para uso de ajustes de tornillos cabeza plana",
+    "codigo":"#0006",
     "subcategoriaID":5
   }
 ]
