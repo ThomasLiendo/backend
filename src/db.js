@@ -47,6 +47,7 @@ const {
   Deposito,
   Empresa,
   TipoDeposito,
+  TipoSuscripcion,
 } = sequelize.models; // añadir modelos
 
 // Aca vendrian las relaciones
@@ -66,6 +67,9 @@ Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
 
 TipoDeposito.hasMany(Deposito);
 Deposito.belongsTo(TipoDeposito);
+
+Empresa.hasOne(TipoSuscripcion);
+TipoSuscripcion.belongsTo(Empresa);
 
 Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
 Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });
