@@ -144,4 +144,5 @@ module.exports = {
   fnCategorias,
   fnSubcategoria,
   fnRelProdSubCat,
+  fnTipoSuscripcion,
 };
