@@ -11,15 +11,16 @@ const allProducts = async (req, res, next) => {
   try {
     req.body.allProducts = await Producto.findAll({
       include: [
-          {
-            model: Subcategoria,
-            include: Categoria
-          },
-          Empresa,
-          Deposito
-        ],
-      },
-    );
+        { 
+          model: Subcategoria, 
+          attributes: ["id", "nombre","descripcion"],
+          through: {
+            attributes: []
+          }
+        },
+        Deposito,
+      ],
+    });
     next();
   } catch (err) {
     console.log("error en allProducts", err.message);

@@ -62,8 +62,8 @@ Deposito.belongsTo(Empresa);
 Empresa.belongsToMany(Producto, { through: "Empresa_Producto" });
 Producto.belongsToMany(Empresa, { through: "Empresa_Producto" });
 /////////////////
-Deposito.belongsToMany(Producto, { through: "Deposito_Producto" });
-Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
+Deposito.hasMany(Producto);
+Producto.belongsTo(Deposito);
 
 TipoDeposito.hasMany(Deposito);
 Deposito.belongsTo(TipoDeposito);

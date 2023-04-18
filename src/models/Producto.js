@@ -26,12 +26,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: "codigoSubcategoria"
     },
-    observaciones: {
-      //cambiarlo a un array de observaciones
-      type: DataTypes.TEXT,
-      allowNull: true,
-      defaultValue: ""
-    },
     descripcion: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -44,13 +38,5 @@ module.exports = (sequelize) => {
       },
       defaultValue: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/2048px-Imagen_no_disponible.svg.png"
     },
-    subcategoriaID: {
-      type: DataTypes.INTEGER,
-      unique: "codigoSubcategoria"
-    },
-    depositoID:{
-      type:DataTypes.INTEGER,
-      allowNull:true,
-    }
   });
 };
