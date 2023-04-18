@@ -5,6 +5,9 @@ const {
   fnTipoDepositos,
   fnEmpresas,
   fnCategorias,
+  fnRelProdSubCat,
+  fnDepositos,
+  fnSubcategoria,
   fnTipoSuscripcion,
 } = require("./src/loadDB.js");
 
@@ -14,8 +17,11 @@ conn.sync({ force: true }).then(async () => {
     await fnRols();
     await fnTipoDepositos();
     await fnTipoSuscripcion();
-    await fnCategorias();
     await fnEmpresas();
+    await fnDepositos();
+    await fnCategorias();
+    await fnSubcategoria();
+    await fnRelProdSubCat();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });

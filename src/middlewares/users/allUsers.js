@@ -6,15 +6,12 @@ const allUser = async (req, res, next) => {
       include: [
         {
           model: Empresa,
-          attributes: ["id", "nombre"],
+          attributes: ["id", "nombre"]
         },
         {
-          model: Rol,
-          attributes: ["id", "rol"],
-          through: {
-            attributes: []
-          }
-        },
+          model:Rol,
+          attributes:["id","rol"]
+        }       
       ],
       attributes:["id","nombre","apellido","clave","email"]
     });

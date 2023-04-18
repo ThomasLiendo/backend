@@ -33,12 +33,12 @@ module.exports = (sequelize) => {
     },
     bloqueo: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      //allowNull: false,
       defaultValue: false, //El default es por si no le pasan algo por body, setea ese valor por defecto
     },
     verificado: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      //allowNull: false,
       defaultValue: true,
     },
     // suscripcionTipo: {
@@ -49,7 +49,12 @@ module.exports = (sequelize) => {
     suscripcionTiempo: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: true, //El default true es por si no le pasan algo por body, setea ese valor por defecto
+      defaultValue: new Date().setDate(new Date().getDate() + 30),
+    },
+    suscripcionFecha: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: DataTypes.NOW,
     },
   });
 };
