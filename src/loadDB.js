@@ -5,6 +5,7 @@ const empresas = require("./json/empresas.json");
 const categoria = require("./json/categorias.json");
 const subcategoria = require("./json/subcategorias.json");
 const producto = require("./json/productos.json");
+const tipoSuscripcion = require("./json/tipoSuscripcion.json");
 const {
   Rol,
   TipoDeposito,
@@ -14,6 +15,7 @@ const {
   Categoria,
   Subcategoria,
   Producto,
+  TipoSuscripcion,
 } = require("./db.js");
 
 function getRandom(min, max) {
@@ -33,7 +35,9 @@ async function fnTipoDepositos() {
 }
 async function fnTipoSuscripcion() {
   for (const r of tipoSuscripcion) {
-    await TipoSuscripcion.create(r);
+    await TipoSuscripcion.create({
+      tipo: r.tipo,
+    });
   }
 }
 

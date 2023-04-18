@@ -11,8 +11,9 @@ const SubCategories = require("./subcategoria");
 const Deposito = require("./deposito");
 const Rols = require("./rol");
 const Empresas = require("./empresas");
-const TipoDepositos = require("./tipoDepositos")
+const TipoDepositos = require("./tipoDepositos");
 const router = express();
+const TipoSuscripcion = require("./tipoSuscripcion");
 
 router.use(express.json());
 
@@ -28,6 +29,7 @@ router.use("/usuarios", User);
 router.use("/depositos", Deposito);
 router.use("/roles", Rols);
 router.use("/", Home);
+router.use("/TipoSuscripcion", TipoSuscripcion);
 
 router.all("*", (req, res) => {
   res.redirect("/");
