@@ -61,7 +61,7 @@ async function fnUsuarios(empresa) {
   await newAdmin.setRol(adminRol);
 }
 
-async function fnDepositos() {
+async function fnDepositos(empresa) {
   const tiposDepos = await TipoDeposito.findAll();
   for (const d of depositos) {
     const [deposito, created] = await Deposito.findOrCreate({
@@ -80,23 +80,24 @@ async function fnDepositos() {
     });
     const random = getRandom(0, tiposDepos.length - 1);
     await deposito.setTipoDeposito(tiposDepos[random]);
-    fnProducto(deposito);
+    // await empresa.addDeposito
   }
 }
 
-async function fnProducto(deposito) {
+async function fnProducto() {
   for (const p of producto) {
-    const [producto, created] = await Producto.findOrCreate({
-      where: { nombre: p.nombre },
-      defaults: {
-        nombre: p.nombre,
-        descripcion: p.descripcion,
-        codigo: p.codigo,
-        subcategoriaID:p.subcategoriaID,
-        cantidad:p.cantidad,
-      },
+    const newProduct = await Producto.create({
+      nombre: p.nombre,
+      descripcion: p.descripcion,
+      codigo:p.codigo,
+      cantidad:p.cantidad,
     });
-    await deposito.addProducto(producto);
+    const deposito = await Deposito.findByPk(p.depositoID)
+    const subcategoria = await Subcategoria.findByPk(p.subcategoriaID);
+    const empresa = await Empresa.findByPk(deposito.EmpresaId);
+    await deposito.addProducto(newProduct);
+    await subcategoria.addProducto(newProduct);
+    await empresa.addProducto(newProduct);
   }
 }
 
@@ -141,7 +142,7 @@ async function fnRelProdSubCat() {
         const deposit = await Deposito.findOne({
           where: { nombre: dep.nombre },
         });
-        await emp.addDeposito(deposit);
+        await deposit.setEmpresa(emp);
       }
     }
   });
@@ -156,4 +157,5 @@ module.exports = {
   fnSubcategoria,
   fnRelProdSubCat,
   fnTipoSuscripcion,
+  fnProducto
 };
