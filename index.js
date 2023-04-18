@@ -8,15 +8,13 @@ const {
   fnRelProdSubCat,
   fnDepositos,
   fnSubcategoria,
-  fnTipoSuscripcion,
 } = require("./src/loadDB.js");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(async () => {
   server.listen(3001, async () => {
     await fnRols();
-    await fnTipoDepositos();
-    await fnTipoSuscripcion();
+    await fnTipoDepositos(); 
     await fnEmpresas();
     await fnDepositos();
     await fnCategorias();
