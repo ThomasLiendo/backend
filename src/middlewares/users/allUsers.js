@@ -13,7 +13,7 @@ const allUser = async (req, res, next) => {
           attributes:["id","rol"]
         }       
       ],
-      attributes:["id","nombre","apellido","clave","email"]
+      attributes:["id","nombre","apellido","clave","email","bloqueo"]
     });
     req.body.allUsers = { status: 200, resultado: allUsers };
     next();
