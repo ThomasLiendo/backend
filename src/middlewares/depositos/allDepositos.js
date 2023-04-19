@@ -4,6 +4,7 @@ const allDepositos = async (req, res, next) => {
   try {
     req.body.allDepositos = await Deposito.findAll({
       include: [TipoDeposito,Empresa, Producto],
+      order: [["id","ASC"]],
     });
     next();
   } catch (error) {

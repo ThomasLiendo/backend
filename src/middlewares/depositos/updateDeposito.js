@@ -2,7 +2,7 @@ const { Deposito, TipoDeposito } = require("../../db");
 
 const updateDeposito = async (req, res, next) => {
   try {
-    const { nombre, calle, altura, ciudad, provincia, pais, tipoDepositoID } = req.body;
+    const { nombre, calle, altura, ciudad, provincia, pais, descripcion, observaciones, tipoDepositoID } = req.body;
     const id = req.params.id;
     const deposito = await Deposito.findAll({ where: { id } });
     if (deposito.lenght !== 0) {
@@ -14,6 +14,8 @@ const updateDeposito = async (req, res, next) => {
           ciudad: ciudad || deposito.ciudad,
           provincia: provincia || deposito.provincia,
           pais: pais || deposito.pais,
+          descripcion: descripcion || deposito.descripcion,
+          observaciones: observaciones || deposito.observaciones
         },
         { where: { id: id } }
       );
