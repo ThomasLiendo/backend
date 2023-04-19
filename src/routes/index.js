@@ -16,6 +16,7 @@ const router = express();
 const TipoSuscripcion = require("./tipoSuscripcion");
 const Factura = require("./factura");
 const OrdenDeCompra = require("./ordenDeCompra");
+const Remito = require("./remitos");
 
 router.use(express.json());
 
@@ -34,6 +35,7 @@ router.use("/", Home);
 router.use("/tipoSuscripcion", TipoSuscripcion);
 router.use("/facturas", Factura);
 router.use("/ordenDeCompras", OrdenDeCompra);
+router.use("/remitos", Remito);
 
 router.all("*", (req, res) => {
   res.redirect("/");
