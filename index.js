@@ -17,12 +17,12 @@ conn.sync({ force: true }).then(async () => {
   server.listen(3001, async () => {
     await fnRols();
     await fnTipoDepositos();
+    await fnTipoSuscripcion();
     await fnEmpresas();
     await fnDepositos();
     await fnCategorias();
     await fnSubcategoria();
     await fnRelProdSubCat();
-    await fnTipoSuscripcion();
     await fnProducto();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });

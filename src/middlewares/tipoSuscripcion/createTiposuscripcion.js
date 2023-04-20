@@ -8,6 +8,7 @@ const createTipoSuscripcion = async (req, res, next) => {
       const newTipoSuscripcion = await TipoSuscripcion.create({
         tipo,
       });
+      req,body.resultado = {status: "200", respuesta: `Tipo de Suscripcion ${newTipoSuscripcion.tipo} se ah creado`}
       next();
     } else {
       throw new Error("datos pasados por body son incorrectos");

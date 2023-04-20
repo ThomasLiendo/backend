@@ -43,8 +43,9 @@ async function fnEmpresas() {
   for (const e of empresas) {
     const empresa = await Empresa.create(e);
     fnUsuarios(empresa);
-    
     // fnDepositos(empresa);
+    const tipoSuscripID = await TipoSuscripcion.findByPk(e.tipoSuscripcionID);
+    await empresa.setTipoSuscripcion(tipoSuscripID);
   }
 }
 
@@ -61,22 +62,19 @@ async function fnUsuarios(empresa) {
   await newAdmin.setRol(adminRol);
 }
 
-async function fnDepositos(empresa) {
+async function fnDepositos() {
   const tiposDepos = await TipoDeposito.findAll();
   for (const d of depositos) {
-    const [deposito, created] = await Deposito.findOrCreate({
-      where: { nombre: d.nombre },
-      defaults: {
-        nombre: d.nombre,
-        calle: d.calle,
-        altura: d.altura,
-        ciudad: d.ciudad,
-        provincia: d.provincia,
-        ciudad: d.ciudad,
-        pais: d.pais,
-        descripcion: d.descripcion,
-        observaciones: d.observaciones,
-      },
+    const deposito = await Deposito.create({
+      nombre: d.nombre,
+      calle: d.calle,
+      altura: d.altura,
+      ciudad: d.ciudad,
+      provincia: d.provincia,
+      ciudad: d.ciudad,
+      pais: d.pais,
+      descripcion: d.descripcion,
+      observaciones: d.observaciones,
     });
     const random = getRandom(0, tiposDepos.length - 1);
     await deposito.setTipoDeposito(tiposDepos[random]);
@@ -89,15 +87,13 @@ async function fnProducto() {
     const newProduct = await Producto.create({
       nombre: p.nombre,
       descripcion: p.descripcion,
-      codigo:p.codigo,
-      cantidad:p.cantidad,
+      codigo: p.codigo,
+      cantidad: p.cantidad,
     });
-    const deposito = await Deposito.findByPk(p.depositoID)
+    const deposito = await Deposito.findByPk(p.depositoID);
     const subcategoria = await Subcategoria.findByPk(p.subcategoriaID);
-    const empresa = await Empresa.findByPk(deposito.EmpresaId);
     await deposito.addProducto(newProduct);
     await subcategoria.addProducto(newProduct);
-    await empresa.addProducto(newProduct);
   }
 }
 
@@ -157,5 +153,5 @@ module.exports = {
   fnSubcategoria,
   fnRelProdSubCat,
   fnTipoSuscripcion,
-  fnProducto
+  fnProducto,
 };
