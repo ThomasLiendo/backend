@@ -58,18 +58,15 @@ Usuario.belongsTo(Empresa);
 Empresa.hasMany(Deposito);
 Deposito.belongsTo(Empresa);
 
-/////////////////
-Empresa.belongsToMany(Producto, { through: "Empresa_Producto" });
-Producto.belongsToMany(Empresa, { through: "Empresa_Producto" });
-/////////////////
+
 Deposito.hasMany(Producto);
 Producto.belongsTo(Deposito);
 
 TipoDeposito.hasMany(Deposito);
 Deposito.belongsTo(TipoDeposito);
 
-Empresa.hasOne(TipoSuscripcion);
-TipoSuscripcion.belongsTo(Empresa);
+TipoSuscripcion.hasOne(Empresa);
+Empresa.belongsTo(TipoSuscripcion);
 
 Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
 Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });

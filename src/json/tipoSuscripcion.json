@@ -1,8 +1,11 @@
 [
   {
-    "tipo": " Suscripcion paga"
+    "tipo":"Expirado"
   },
   {
-    "tipo": " Suscripcion no paga"
+    "tipo": "Mensual"
+  },
+  {
+    "tipo": "Anual"
   }
 ]
