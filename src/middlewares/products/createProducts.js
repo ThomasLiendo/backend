@@ -23,7 +23,7 @@ const createProduct = async (req, res, next) => {
     });
     await subcategoria.addProducto(newProduct);
     await deposito.addProducto(newProduct);
-    await empresa.addProducto(newProduct);
+    // await empresa.addProducto(newProduct);
     req.body.resultado = {
       status: "200",
       respuesta: `el Producto ${nombre} se ah creado exitosamente`,
