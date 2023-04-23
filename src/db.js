@@ -71,8 +71,8 @@ Deposito.belongsTo(TipoDeposito);
 TipoSuscripcion.hasOne(Empresa);
 Empresa.belongsTo(TipoSuscripcion);
 
-Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
-Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });
+Subcategoria.hasMany(Producto);
+Producto.belongsTo(Subcategoria);
 
 Categoria.belongsToMany(Subcategoria, { through: "Categoria_Subcategoria" });
 Subcategoria.belongsToMany(Categoria, { through: "Categoria_Subcategoria" });

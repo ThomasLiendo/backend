@@ -15,13 +15,7 @@ const allProducts = async (req, res, next) => {
         where: { EmpresaId: empresaId },
         order: [["nombre", "ASC"]],
         include: [
-          {
-            model: Subcategoria,
-            attributes: ["id", "nombre", "descripcion"],
-            through: {
-              attributes: [],
-            },
-          },
+          Subcategoria,
           Deposito,
         ],
       });
@@ -30,20 +24,14 @@ const allProducts = async (req, res, next) => {
       req.body.allProducts = await Producto.findAll({
         order: [["nombre", "ASC"]],
         include: [
-          {
-            model: Subcategoria,
-            attributes: ["id", "nombre", "descripcion"],
-            through: {
-              attributes: [],
-            },
-          },
           Deposito,
+          Subcategoria
         ],
       });
       next();
     }
   } catch (err) {
-    console.log("error en allProducts", err.message);
+    console.log("error en allProducts", err);
     res.status(404);
   }
 };
