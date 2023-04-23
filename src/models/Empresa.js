@@ -55,6 +55,11 @@ module.exports = (sequelize) => {
       type:DataTypes.DATE,
       allowNull:true,
       defaultValue: DataTypes.NOW
-    }
+    },
+    imagen: {
+      type: DataTypes.TEXT, //puse .text para que cuando se ponga una imagen me permita mas caracteres para poner un link largo
+      allowNull: true,
+      defaultValue: "https://cdn-icons-png.flaticon.com/512/3442/3442560.png",
+    },
   });
 };
