@@ -2,31 +2,26 @@
   {
     "nombre": "Materiales",
     "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID":1
+    "categoriaID": 1
   },
   {
     "nombre": "Repuesto",
     "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID":1
+    "categoriaID": 2
   },
   {
     "nombre": "Maquinarias",
     "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID":1
+    "categoriaID": 2
   },
   {
     "nombre": "Vehiculos",
     "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID":1
+    "categoriaID": 2
   },
   {
     "nombre": "Equipos",
     "descripcion": "En esta Subcategoria es solo para pruebas",
-    "categoriaID":1
-  },
-  {
-    "nombre": "Materiales",
-    "descripcion": "En esta Subcategoria es solo para pruebas1",
-    "categoriaID":2
+    "categoriaID": 2
   }
 ]

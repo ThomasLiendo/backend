@@ -19,14 +19,18 @@ const updateProduct = async (req, res, next) => {
           cantidad: cantidad || producto.cantidad,
           descripcion: descripcion || producto.descripcion,
           codigo: codigo || producto.codigo,
+          subcategoriaID: subcategoriaID || producto.subcategoriaID,
+          depositoID: depositoID || producto.depositoID,
         },
         { where: { id: id } }
       );
-      if(subcategoriaID){
-        await producto.setSubcategorium(await Subcategoria.findByPk(subcategoriaID))
+      if (subcategoriaID) {
+        await producto.setSubcategorium(
+          await Subcategoria.findByPk(subcategoriaID)
+        );
       }
-      if(depositoID){
-        await producto.setDeposito(await Deposito.findByPk(depositoID))
+      if (depositoID) {
+        await producto.setDeposito(await Deposito.findByPk(depositoID));
       }
       req.body.resultado = {
         status: "200",
