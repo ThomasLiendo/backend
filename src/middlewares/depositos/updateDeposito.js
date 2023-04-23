@@ -1,22 +1,28 @@
-const { Deposito } = require("../../db");
+const { Deposito, TipoDeposito } = require("../../db");
 
 const updateDeposito = async (req, res, next) => {
   try {
-    const { nombre, calle, altura, ciudad, provincia, pais } = req.body;
+    const { nombre, calle, altura, ciudad, provincia, pais, descripcion, observaciones, tipoDepositoID } = req.body;
     const id = req.params.id;
     const deposito = await Deposito.findAll({ where: { id } });
     if (deposito.lenght !== 0) {
-      await Deposito.update(
+      const depositoActualizado = await Deposito.update(
         {
-          nombre,
-          calle,
-          altura,
-          ciudad,
-          provincia,
-          pais,
+          nombre: nombre || deposito.nombre,
+          calle: calle || deposito.calle,
+          altura: altura || deposito.altura,
+          ciudad: ciudad || deposito.ciudad,
+          provincia: provincia || deposito.provincia,
+          pais: pais || deposito.pais,
+          descripcion: descripcion || deposito.descripcion,
+          observaciones: observaciones || deposito.observaciones
         },
         { where: { id: id } }
       );
+      if(tipoDepositoID){
+        const nuevoTipoDeposito = await TipoDeposito.findByPk(tipoDepositoID)
+        await depositoActualizado.setTipoDeposito(nuevoTipoDeposito);
+      }
       req.body.resultado = {
         status: "200",
         respuesta: `el deposito ${nombre} se ah actualizado exitosamente`,

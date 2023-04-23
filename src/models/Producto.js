@@ -19,26 +19,24 @@ module.exports = (sequelize) => {
     cantidad: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 0,
     },
     codigo: {
       type: DataTypes.STRING,
-      allowNull: true,
-      unique: true,
-    },
-    observaciones: {
-      //cambiarlo a un array de observaciones
-      type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
+      unique: "codigoSubcategoria"
     },
     descripcion: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
+      defaultValue: ""
     },
     imagen: {
       type: DataTypes.TEXT,
       validate: {
         isUrl: true,
       },
+      defaultValue: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/2048px-Imagen_no_disponible.svg.png"
     },
   });
 };

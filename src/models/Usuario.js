@@ -1,11 +1,12 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
+const hash = require("../functions/hash");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Usuario', {
+  sequelize.define("Usuario", {
     //id se crea automatico
-    id:{
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
@@ -15,41 +16,43 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate:{
-        isAlpha: {
-          msg: "El Nombre debe ser solo Texto"
-        }
-      }
     },
     apellido: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
-        isAlpha: {
-          msg: "El Apellido debe ser solo Texto"
-        }
-      }
-      
     },
     email: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate:{
+      validate: {
         isEmail: {
-          msg: "El Formato del Email no es el correcto"
-        }
-      }
+          msg: "El Formato del Email no es el correcto",
+        },
+      },
     },
-    clave: { 
+    clave: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
-        len: [5,20], 
-        isInt: {
-          msg: "La Clave debe ser entre 5 a 20 caracteres"
-        }
-      }
+      validate: {
+        len: {
+          args: [5, 20],
+          msg: "La Clave debe ser entre 5 a 20 caracteres",
+        },
+      },
+      set(value) {
+        this.setDataValue("clave", hash(value));
+      },
     },
-  },);
+    imagen: {
+      type: DataTypes.TEXT, //puse .text para que cuando se ponga una imagen me permita mas caracteres para poner un link largo
+      allowNull: true,
+      defaultValue: "https://www.softzone.es/app/uploads/2018/04/guest.png",
+    },
+    bloqueo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false, //El default es por si no le pasan algo por body, setea ese valor por defecto
+    },
+  });
 };

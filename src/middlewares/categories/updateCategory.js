@@ -3,12 +3,13 @@ const { Categoria } = require("../../db");
 const updateCategory = async (req, res, next) => {
   try {
     const { nombre, descripcion } = req.body;
+    const id = req.params.id;
     const categoria = await Categoria.findAll({ where: { id } });
     if (categoria.lenght !== 0) {
       await Categoria.update(
         {
-          nombre,
-          descripcion,
+          nombre: nombre || categoria.nombre,
+          descripcion: descripcion || categoria.descripcion,
         },
         { where: { id: id } }
       );

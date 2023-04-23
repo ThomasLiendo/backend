@@ -9,16 +9,17 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
-      allowNull: false,
+      autoIncrement: true,
     },
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: "codigoSubcategoria",
     },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: "codigoSubcategoria"
     },
   });
 };

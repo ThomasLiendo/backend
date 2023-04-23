@@ -1,11 +1,22 @@
-const { Deposito } = require("../../db");
+const { Deposito, TipoDeposito, Empresa } = require("../../db");
 
 const createDeposito = async (req, res, next) => {
   try {
-    const { nombre, calle, altura, ciudad, provincia, pais } = req.body;
+    const {
+      nombre,
+      calle,
+      altura,
+      ciudad,
+      provincia,
+      pais,
+      descripcion,
+      observaciones,
+      tipoDepositoID,
+      empresaID
+    } = req.body;
     if (typeof nombre !== "string" || nombre === undefined) {
       throw new Error(
-        `El Nombre del debe ser unicamente texto, y has insertado ${
+        `El Nombre del deposito debe ser unicamente texto, y has insertado ${
           nombre === undefined ? "texto vacio" : nombre
         }`
       );
@@ -31,16 +42,24 @@ const createDeposito = async (req, res, next) => {
       typeof altura === "string" &&
       typeof ciudad === "string" &&
       typeof provincia === "string" &&
-      typeof pais === "string"
+      typeof pais === "string" &&
+      typeof descripcion === "string" &&
+      typeof observaciones === "string"
     ) {
-      const newDeposito = await Usuario.create({
+      const newDeposito = await Deposito.create({
         nombre,
         calle,
         altura,
         ciudad,
         provincia,
         pais,
+        descripcion,
+        observaciones,
       });
+      const tipoDeposito = await TipoDeposito.findByPk(tipoDepositoID);
+      await newDeposito.setTipoDeposito(tipoDeposito);
+      const empresa = await Empresa.findByPk(empresaID);
+      await newDeposito.setEmpresa(empresa)
       req.body.resultado = {
         status: "200",
         respuesta: `el deposito ${nombre} se ah creado exitosamente!`,

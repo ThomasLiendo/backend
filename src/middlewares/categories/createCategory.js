@@ -1,4 +1,4 @@
-const { Categoria } = require("../../db");
+const { Categoria, Subcategoria } = require("../../db");
 
 const createCategory = async (req, res, next) => {
   try {
@@ -23,6 +23,7 @@ const createCategory = async (req, res, next) => {
         nombre,
         descripcion,
       });
+
       req.body.resultado = {
         status: "200",
         respuesta: `La categoria ${nombre} con la descripcion: ${descripcion} se ha creado exitosamente!`,

@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const hash = require("../functions/hash");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -9,7 +10,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
-      allowNull: false,
+      autoIncrement: true,
     },
     nombre: {
       type: DataTypes.STRING,
@@ -30,15 +31,30 @@ module.exports = (sequelize) => {
         },
       },
     },
-    clave: {
+    bloqueo: {
+      type: DataTypes.BOOLEAN,
+      //allowNull: false,
+      defaultValue: false, //El default es por si no le pasan algo por body, setea ese valor por defecto
+    },
+    verificado: {
+      type: DataTypes.BOOLEAN,
+      //allowNull: false,
+      defaultValue: true,
+    },
+    suscripcionTipo: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [5, 20],
-        isInt: {
-          msg: "La Clave debe ser entre 5 a 20 caracteres",
-        },
-      },
+      defaultValue: true,
     },
+    suscripcionTiempo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true, //cambiarlo a false
+      defaultValue: true, 
+    },
+    suscripcionFecha: {
+      type:DataTypes.DATE,
+      allowNull:true,
+      defaultValue: DataTypes.NOW
+    }
   });
 };

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "nombre": "Avila Deposit",
+    "calle": "Calle",
+    "altura":"3300",
+    "ciudad":"Ciudad",
+    "provincia":"Provincia",
+    "pais":"Pais",
+    "descripcion":"Deposito para solo Maquinarias pesadas",
+    "observaciones":"ninguno",
+    "empresaID": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Pico Deposit",
+    "calle": "Calle",
+    "altura":"3300",
+    "ciudad":"Ciudad",
+    "provincia":"Provincia",
+    "pais":"Pais",
+    "descripcion":"Deposito para solo Maquinarias pesadas",
+    "observaciones":"ninguno",
+    "empresaID": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Toronto Deposit",
+    "calle": "Calle",
+    "altura":"3300",
+    "ciudad":"Ciudad",
+    "provincia":"Provincia",
+    "pais":"Pais",
+    "descripcion":"Deposito para solo Maquinarias pesadas",
+    "observaciones":"ninguno",
+    "empresaID": 2
+  },
+  {
+    "id": 4,
+    "nombre": "Kilos Imprevisto Deposit",
+    "calle": "Calle",
+    "altura":"3300",
+    "ciudad":"Ciudad",
+    "provincia":"Provincia",
+    "pais":"Pais",
+    "descripcion":"Deposito para solo Maquinarias pesadas",
+    "observaciones":"ninguno",
+    "empresaID": 3
+  },
+  {
+    "id": 5,
+    "nombre": "La Calle Deposit",
+    "calle": "Calle",
+    "altura":"3300",
+    "ciudad":"Ciudad",
+    "provincia":"Provincia",
+    "pais":"Pais",
+    "descripcion":"Deposito para solo Maquinarias pesadas",
+    "observaciones":"ninguno",
+    "empresaID": 4
+  }
+]

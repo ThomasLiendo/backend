@@ -1,0 +1,17 @@
+[
+    {
+        "rol":"Super Administrador"
+    },
+    {
+        "rol":"Administrador"
+    },
+    {
+        "rol":"Responsable de Deposito"
+    },
+    {
+        "rol":"Responsable de Compras"
+    },
+    {
+        "rol":"Responsable de Logistica"
+    }
+]

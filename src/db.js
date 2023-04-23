@@ -38,26 +38,50 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Categoria, Subcategoria, Producto, Rol, Usuario, Deposito, Empresa } =
-  sequelize.models; // añadir modelos
+const {
+  Categoria,
+  Subcategoria,
+  Producto,
+  Rol,
+  Usuario,
+  Deposito,
+  Empresa,
+  TipoDeposito,
+  TipoSuscripcion,
+  Factura,
+  OrdenDeCompra,
+  Presupuesto,
+  Remito,
+} = sequelize.models; // añadir modelos
 
 // Aca vendrian las relaciones
 
-Categoria.hasMany(Subcategoria);
-Subcategoria.hasMany(Producto);
-
 Empresa.hasMany(Usuario);
+Usuario.belongsTo(Empresa);
+
 Empresa.hasMany(Deposito);
-Empresa.hasMany(Producto);
+Deposito.belongsTo(Empresa);
 
-Deposito.belongsToMany(Producto, { through: "Deposito_Producto" });
-Producto.belongsToMany(Deposito, { through: "Deposito_Producto" });
+Deposito.hasMany(Producto);
+Producto.belongsTo(Deposito);
 
-Rol.belongsToMany(Usuario, { through: "Usuario_Rol" });
-Usuario.belongsToMany(Rol, { through: "Usuario_Rol" });
+TipoDeposito.hasMany(Deposito);
+Deposito.belongsTo(TipoDeposito);
 
-Usuario.belongsToMany(Deposito, { through: "Usuario_Deposito" });
-Deposito.belongsToMany(Usuario, { through: "Usuario_Deposito" });
+TipoSuscripcion.hasOne(Empresa);
+Empresa.belongsTo(TipoSuscripcion);
+
+Subcategoria.belongsToMany(Producto, { through: "Subcategoria_Producto" });
+Producto.belongsToMany(Subcategoria, { through: "Subcategoria_Producto" });
+
+Categoria.belongsToMany(Subcategoria, { through: "Categoria_Subcategoria" });
+Subcategoria.belongsToMany(Categoria, { through: "Categoria_Subcategoria" });
+
+Rol.hasMany(Usuario);
+Usuario.belongsTo(Rol);
+
+Categoria.belongsToMany(Producto, { through: "Categoria_Producto" });
+Producto.belongsToMany(Categoria, { through: "Categoria_Producto" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

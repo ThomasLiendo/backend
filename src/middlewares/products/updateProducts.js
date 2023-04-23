@@ -2,17 +2,25 @@ const { Producto, Op } = require("../../db");
 
 const updateProduct = async (req, res, next) => {
   try {
-    const { nombre, cantidad, observaciones, informacion, codigo } = req.body;
+    const {
+      nombre,
+      cantidad,
+      descripcion,
+      codigo,
+      subcategoriaID,
+      depositoID,
+    } = req.body;
     const id = req.params.id;
     const producto = await Producto.findAll({ where: { id } });
     if (producto.lenght !== 0) {
       await Producto.update(
         {
-          nombre:nombre || producto.nombre,
+          nombre: nombre || producto.nombre,
           cantidad: cantidad || producto.cantidad,
-          observaciones:observaciones || producto.observaciones,
-          informacion:informacion || producto.informacion,
+          descripcion: descripcion || producto.descripcion,
           codigo: codigo || producto.codigo,
+          subcategoriaID: subcategoriaID || producto.subcategoriaID,
+          depositoID: depositoID || producto.depositoID,
         },
         { where: { id: id } }
       );

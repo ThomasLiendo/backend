@@ -15,13 +15,13 @@ router.post("/", createCategory, async (req, res) => {
   return res.status(200).send(req.body.resultado);
 });
 
-router.delete("/", deleteCategory, async (req, res) => {
+router.delete("/id", deleteCategory, async (req, res) => {
   return res.json({
     respuesta: `categoria con id ${req.body.eliminado} eliminado`,
   });
 });
 
-router.put("/", updateCategory, async (req, res) => {
+router.put("/id", updateCategory, async (req, res) => {
   return res.json({ respuesta: `Categoria actualizado` });
 });
 module.exports = router;
