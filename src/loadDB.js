@@ -105,7 +105,10 @@ async function fnCategorias() {
 
 async function fnSubcategoria() {
   for (const sub of subcategoria) {
-    await Subcategoria.create(sub);
+    const newSub = await Subcategoria.create(sub);
+    const categoriaID = sub.categoriaID;
+    const categoria = await Categoria.findByPk(categoriaID)
+    await categoria.addSubcategoria(newSub)
   }
 }
 
@@ -114,11 +117,11 @@ async function fnRelProdSubCat() {
   const subcategorias = await Subcategoria.findAll();
   const productos = await Producto.findAll();
 
-  categorias.forEach(async (cat) => {
-    subcategorias.forEach(async (sub) => {
-      await cat.addSubcategoria(sub);
-    });
-  });
+  // categorias.forEach(async (cat) => {
+  //   subcategorias.forEach(async (sub) => {
+  //     await cat.addSubcategoria(sub);
+  //   });
+  // });
 
   subcategorias.forEach(async (sub) => {
     productos.forEach(async (prod) => {
