@@ -14,11 +14,12 @@ module.exports = (sequelize) => {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: "codigoSubcategoria",
     },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: "codigoSubcategoria"
     },
   });
 };
