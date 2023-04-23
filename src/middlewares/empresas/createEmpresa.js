@@ -1,5 +1,6 @@
 const { Empresa, Usuario, Rol, Op } = require("../../db");
 const TipoSuscripcion = require("../../models/TipoSuscripcion");
+const functionHash = require("../../functions/hash");
 
 const createEmpresa = async (req, res, next) => {
   try {
@@ -31,9 +32,7 @@ const createEmpresa = async (req, res, next) => {
       email,
       nombre,
       apellido: "Administrador",
-      clave: nombre + this.apellido,
-      //rolID: 1,
-      //empresaID: newEmpresa.id,
+      clave: functionHash(clave),
     });
     const tipoSuscripcion = await TipoSuscripcion.findByPk(tipoSuscripcionID);
     await newEmpresa.addTipoSuscripcion(tipoSuscripcion);

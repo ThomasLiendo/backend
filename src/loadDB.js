@@ -17,6 +17,7 @@ const {
   Producto,
   TipoSuscripcion,
 } = require("./db.js");
+const functionHash = require("./functions/hash")
 
 function getRandom(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
@@ -42,22 +43,24 @@ async function fnTipoSuscripcion() {
 async function fnEmpresas() {
   for (const e of empresas) {
     const empresa = await Empresa.create(e);
-    fnUsuarios(empresa);
+    fnUsuarios(empresa, e.clave);
     // fnDepositos(empresa);
     const tipoSuscripID = await TipoSuscripcion.findByPk(e.tipoSuscripcionID);
     await empresa.setTipoSuscripcion(tipoSuscripID);
   }
 }
 
-async function fnUsuarios(empresa) {
+async function fnUsuarios(empresa, clave) {
   const adminRol = await Rol.findByPk(2);
+  
   const newAdmin = await Usuario.create({
     email: empresa.email,
     nombre: empresa.nombre,
     apellido: "Administrador",
-    clave: empresa.nombre + this.apellido,
+    clave: clave,
   });
-
+  console.log(empresa.email)
+  console.log(functionHash(clave))
   await empresa.addUsuario(newAdmin);
   await newAdmin.setRol(adminRol);
 }

@@ -1,10 +1,36 @@
 const { Usuario, Empresa, Rol, Op } = require("../../db");
+const functionHash = require("../../functions/hash");
 
 const allUser = async (req, res, next) => {
-  const {empresaId} = req.query;
+  const {empresaId, clave, email} = req.query;
   try {
-    if(empresaId){
+    if(clave && email){
+      const claveHash = functionHash(clave) 
       const allUsers = await Usuario.findAll({
+          where: {
+            [Op.and]: [
+              { email: email },
+              { clave: claveHash }
+            ]
+          },
+        include: [
+          {
+            model: Empresa,
+            attributes: ["id", "nombre"]
+          },
+          {
+            model:Rol,
+            attributes:["id","rol"]
+          }       
+        ],
+        attributes:["id","nombre","apellido","clave","email","bloqueo"]
+      });
+        req.body.allUsers = { status: allUsers ? 200: 404, resultado: allUsers };
+        next();
+
+    }
+    else if(empresaId){
+      const allUsers = await Usuario.findOne({
         where:{EmpresaId:empresaId},
         include: [
           {
