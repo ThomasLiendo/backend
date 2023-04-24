@@ -36,7 +36,6 @@ const sendEmail = async (req, res, next) =>{
                 if(err){
                     return res.status(404).send("Error sending Email");
                 }
-                console.log(info)
                 return res.status(200).send("Email Sended")
             })
 
