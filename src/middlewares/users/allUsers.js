@@ -5,10 +5,15 @@ const allUser = async (req, res, next) => {
   const { empresaId, clave, email } = req.query;
   try {
     if (clave && email) {
+      console.log("---Find User by Email and Clave");
+      console.log("email:",email);
+      console.log("clave:",clave);
+      console.log("claveHash1",functionHash(clave))
+      console.log("claveHash2",functionHash(functionHash(clave)))
       const claveHash = functionHash(clave);
       const allUsers = await Usuario.findOne({
         where: {
-          [Op.and]: [{ email: { [Op.iLike]: email } }, { clave: claveHash }],
+          [Op.and]: [{ email: { [Op.iLike]: email } }, { clave: functionHash(claveHash) }],
         },
         include: [
           {

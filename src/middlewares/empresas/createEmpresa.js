@@ -28,6 +28,8 @@ const createEmpresa = async (req, res, next) => {
         descripcion,
         email,
       });
+      console.log("clave:",clave);
+      console.log("ClaveHash:",functionHash(clave));
       console.log("-------");
       const newAdmin = await Usuario.create({
         email,
@@ -35,6 +37,7 @@ const createEmpresa = async (req, res, next) => {
         apellido: "Administrador",
         clave: functionHash(clave),
       });
+
       await newEmpresa.setTipoSuscripcion(tipoSuscripcion);
   
       await newAdmin.setRol(elRol);
