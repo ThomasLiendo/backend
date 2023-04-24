@@ -1,4 +1,4 @@
-const { Producto, Op } = require("../../db");
+const { Producto, Subcategoria, Deposito, Op } = require("../../db");
 
 const updateProduct = async (req, res, next) => {
   try {
@@ -11,7 +11,7 @@ const updateProduct = async (req, res, next) => {
       depositoID,
     } = req.body;
     const id = req.params.id;
-    const producto = await Producto.findAll({ where: { id } });
+    const producto = await Producto.findByPk(id);
     if (producto.lenght !== 0) {
       await Producto.update(
         {
@@ -24,6 +24,14 @@ const updateProduct = async (req, res, next) => {
         },
         { where: { id: id } }
       );
+      if (subcategoriaID) {
+        await producto.setSubcategorium(
+          await Subcategoria.findByPk(subcategoriaID)
+        );
+      }
+      if (depositoID) {
+        await producto.setDeposito(await Deposito.findByPk(depositoID));
+      }
       req.body.resultado = {
         status: "200",
         respuesta: `El producto ${nombre} se ah actualizado exitosamente`,
