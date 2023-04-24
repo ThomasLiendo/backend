@@ -5,7 +5,7 @@ const findUserByEmail = async (req, res, next) => {
   try {
     const email = req.query.email;
     const clave = req.query.clave;
-    const claveHash = functionHash(clave);
+    const claveHash = functionHash(functionHash(clave));
     const resultado = await Usuario.findOne({
       where: {
         [Op.and]: [
