@@ -1,5 +1,4 @@
-const { Empresa, Usuario, Rol, Op } = require("../../db");
-const TipoSuscripcion = require("../../models/TipoSuscripcion");
+const { Empresa, Usuario, Rol, TipoSuscripcion, Op } = require("../../db");
 const functionHash = require("../../functions/hash");
 
 const createEmpresa = async (req, res, next) => {
@@ -15,38 +14,44 @@ const createEmpresa = async (req, res, next) => {
       );
     }
 
-    console.log(
-      "Pendiente x Corregir Crear empresa error de llave de duplicidad"
-    );
-
-    const find = await Empresa.findAll();
-
-    const newEmpresa = await Empresa.create({
-      id: find.length + 1,
-      nombre,
-      descripcion,
-      email,
-    });
-    console.log("-------");
-    const newAdmin = await Usuario.create({
-      email,
-      nombre,
-      apellido: "Administrador",
-      clave: functionHash(clave),
-    });
-    const tipoSuscripcion = await TipoSuscripcion.findByPk(tipoSuscripcionID);
-    await newEmpresa.addTipoSuscripcion(tipoSuscripcion);
-
-    const elRol = await Rol.findByPk(2);
-    await newAdmin.setRol(elRol);
-
-    await newEmpresa.addUsuario(newAdmin);
-
-    req.body.resultado = {
-      status: "200",
-      respuesta: `La Empresa ${nombre} se ah creado exitosamente`,
-    };
-    next();
+    // console.log(
+    //   "Pendiente x Corregir Crear empresa error de llave de duplicidad"
+    // );
+    
+    if(nombre && descripcion && email && clave && tipoSuscripcionID){
+      //const find = await Empresa.findAll();
+      const tipoSuscripcion = await TipoSuscripcion.findByPk(tipoSuscripcionID);
+      const elRol = await Rol.findByPk(2);
+  
+      const newEmpresa = await Empresa.create({
+        nombre,
+        descripcion,
+        email,
+      });
+      console.log("-------");
+      const newAdmin = await Usuario.create({
+        email,
+        nombre,
+        apellido: "Administrador",
+        clave: functionHash(clave),
+      });
+      await newEmpresa.setTipoSuscripcion(tipoSuscripcion);
+  
+      await newAdmin.setRol(elRol);
+  
+      await newEmpresa.addUsuario(newAdmin);
+  
+      req.body.resultado = {
+        status: "200",
+        respuesta: `La Empresa ${nombre} se ah creado exitosamente`,
+      };
+      next();
+    }else{
+      throw new Error(
+        `Algun dato fue incorrecto, nombre: ${nombre}, email: ${email}, clave: ${clave}, tipoSuscripcionID: ${tipoSuscripcionID} descripcion: ${descripcion}. 
+        }`
+      );
+    }
   } catch (err) {
     console.log("error en createEmpresa");
     console.log(err.message);
