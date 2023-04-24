@@ -57,7 +57,7 @@ async function fnUsuarios(empresa, clave) {
     email: empresa.email,
     nombre: empresa.nombre,
     apellido: "Administrador",
-    clave: clave,
+    clave: functionHash(clave),
   });
   console.log(empresa.email)
   console.log(functionHash(clave))
