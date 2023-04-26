@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
-const allTipoSuscripcion = require("../middlewares/tipoSuscripcion/allTipoSuscripcion");
-const createTipoSuscripcion = require("../middlewares/tipoSuscripcion/createTipoSuscripcion");
+const allTipoSuscripcion = require("../middlewares/tipoSuscripcion/alltipoSuscripcion");
+const createTipoSuscripcion = require("../middlewares/tipoSuscripcion/createTiposuscripcion");
 const deleteTipoSuscripcion = require("../middlewares/tipoSuscripcion/deleteTipoSuscripcion");
 
 const router = Router();
@@ -15,7 +15,7 @@ router.post("/", createTipoSuscripcion, async (req, res) => {
 
 router.delete("/:id", deleteTipoSuscripcion, async (req, res) => {
   return res.json({
-    respuesta: `Tipo de suscripcion con id ${req.body.eliminado} eliminado`,
+    respuesta: Tipo de suscripcion con id ${req.body.eliminado} eliminado,
   });
 });
 module.exports = router;
