@@ -14,8 +14,6 @@ router.post("/", createTipoSuscripcion, async (req, res) => {
 });
 
 router.delete("/:id", deleteTipoSuscripcion, async (req, res) => {
-  return res.json({
-    respuesta: Tipo de suscripcion con id ${req.body.eliminado} eliminado,
-  });
+  return res.json(req.body.eliminado);
 });
 module.exports = router;
